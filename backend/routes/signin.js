@@ -58,19 +58,19 @@ const findUser = (username) => {
 
 router.route('/signin')
     .post(async (req, res) => {
-        const playload = {
+        const payload = {
             username: req.body.username,
             password: req.body.password,
         };
-        console.log(playload);
+        console.log(payload);
 
         try{
-            const result = await findUser(playload.username);
+            const result = await findUser(payload.username);
+            const loginStatus = await compareHash(payload.password, result.password);
             console.log(result)
-            const loginStatus = await compareHash(playload.password, result.password);
-
+            console.log(loginStatus)
             const status = loginStatus.status;
-
+           
             if(status){
                 const token = jwt.sign(result, key, {expiresIn: 60*5});
                 res.status(200).json({result, token, status});
