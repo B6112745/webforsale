@@ -32,27 +32,37 @@ const insertUser = (dataUser) => {
     return new Promise ((resolve, reject) => {
         var new_user = new User({
             username: dataUser.username,
-            password: dataUser.password
+            password: dataUser.password,
+            email: dataUser.email,
+            gender: dataUser.gender,
+            birth: dataUser.birth,
+            phone: dataUser.phone,
+            role: dataUser.role
         });
         new_user.save((err, data) => {
             if(err){
                 reject(new Error('Cannot insert user to DB!'));
             }else{
-                resolve({massage: 'Sign up successfully'});
+                resolve({massage: 'Sign up successfully',show: data});
             }
         });
     });
 }
-router.route('/signup')
+router.route('/adduser')
     .post((req, res) => {
         makeHash(req.body.password)
         .then(hashText => {
-            const playload = {
+            const payload = {
                 username: req.body.username,
                 password: hashText,
+                email: req.body.email,
+                gender: req.body.gender,
+                birth: req.body.birth,
+                phone: req.body.phone,
+                role: "user"
             }
-            console.log(playload);
-            insertUser(playload)
+            console.log(payload);
+            insertUser(payload)
                 .then(result => {
                     console.log(result);
                     res.status(200).json(result);
@@ -62,7 +72,35 @@ router.route('/signup')
                 })
         })
         .catch(err => {
+        
+        })
+    });
 
+    router.route('/addadmins')
+    .post((req, res) => {
+        makeHash(req.body.password)
+        .then(hashText => {
+            const payload = {
+                username: req.body.username,
+                password: hashText,
+                email: req.body.email,
+                gender: req.body.gender,
+                birth: req.body.birth,
+                phone: req.body.phone,
+                role: "admin"
+            }
+            console.log(payload);
+            insertUser(payload)
+                .then(result => {
+                    console.log(result);
+                    res.status(200).json(result);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        })
+        .catch(err => {
+           
         })
     });
     

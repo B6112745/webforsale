@@ -8,17 +8,7 @@ const historySchema = Schema({
     
 },  {
     conllection: 'history'
-},history.aggregate([
-    {
-      $lookup:
-        {
-          from: "history",
-          localField: "name",
-          foreignField: "name",
-          as: "user_his"
-        }
-   }
- ]));
+});
 
 let History
 try {

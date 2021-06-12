@@ -6,7 +6,7 @@ const url = 'mongodb://localhost:27017/db';
 const config = {
     autoIndex: true,
     userNewUrlParser: true,
-    userUnifiedTopology: true 
+    useUnifiedTopology: true
 };
 
 expressApp.use((req, res, next) => {
@@ -29,10 +29,10 @@ expressApp.use((req, res, next) => {
     });
 });
 
-expressApp.use('/user', require('./routes/users'))
-//expressApp.use('/login', require('./routes/signin'))
+expressApp.use('/signup', require('./routes/signup'))
+expressApp.use('/login', require('./routes/signin'))
 expressApp.use('/product', require('./routes/products'))
-expressApp.use('/history', require('./routes/history'))
+expressApp.use('/admin', require('./api/api'))
 
 expressApp.listen(3000, function(){
     console.log('Listening on port 3000')
