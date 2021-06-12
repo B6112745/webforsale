@@ -3,54 +3,110 @@ const router = expressFunction.Router();
 const mongoose = require('mongoose');
 
 var Schema = require("mongoose").Schema;
-const productSchema = Schema({
-    name: String,
-    discrision: String,
-    type: String,
+
+const gameSchema = Schema({
+    title: String,
+    genre: String,
+    developer: String,
+    publisher: String,
     price: Number,
-    quantity: Number
+    
 }, {
-    conllection: 'product'
+    conllection: 'games'
 });
 
-let Product
+
+const deviceSchema = Schema({
+    type: String,
+    name: String,
+    detail: String,
+    quantity: String,
+    price: Number,
+    
+}, {
+    conllection: 'games'
+});
+
+let Game
 try {
-    Product = mongoose.model('products')
+    Game = mongoose.model('games')
 } catch (error) {
-    Product = mongoose.model('products', productSchema);
+    Game = mongoose.model('games', gameSchema);
 }
 
-const insertProduct = (dataProduct) => {
+let Device
+try {
+    Device = mongoose.model('devices')
+} catch (error) {
+    Device = mongoose.model('devices', deviceSchema);
+}
+
+const insertGame = (dataGame) => {
     return new Promise ((resolve, reject) => {
-        var new_user = new User({
-            name: dataProduct.username,
-            discrision: dataProduct.discrision,
-            type: dataProduct.type,
-            price: dataProduct.price,
-            quantity: dataProduct.quantity,
+        var new_game = new Game({
+            title: dataGame.title,
+            genre: dataGame.genre,
+            developer: dataGame.developer,
+            publisher: dataGame.publisher,
+            price: dataGame.price,
         });
-        new_user.save((err, data) => {
+        new_game.save((err, data) => {
             if(err){
                 reject(new Error('Cannot insert user to DB!'));
             }else{
-                resolve({massage: 'Update successfully'});
+                resolve({massage: 'Insert successfully'});
             }
         });
     });
 }
 
-router.route('/insert')
+
+const insertDevice = (dataDevice) => {
+    return new Promise ((resolve, reject) => {
+        var new_device = new Device({
+            type: dataDevice.type,
+            name: dataDevice.name,
+            detail: dataDevice.detail,
+            quantity: dataDevice.quantity,
+            price: dataDevice.price,
+        });
+        new_device.save((err, data) => {
+            if(err){
+                reject(new Error('Cannot insert user to DB!'));
+            }else{
+                resolve({massage: 'Insert successfully'});
+            }
+        });
+    });
+}
+
+router.route('/insertgame')
     .post((req, res) => {
-        const playload = {
-            username: req.body.username,
-            password: hashText,
-            name: req.body.username,
-            discrision: req.body.discrision,
-            type: req.body.type,
+        const payload = {
+            title: req.body.title,
+            genre: req.body.genre,
+            developer: req.body.developer,
+            publisher: req.body.publisher,
             price: req.body.price,
-            quantity: req.body.quantity,
         }
-            insertProduct(playload)
+            insertGame(payload)
+                .then(result => {
+                    res.status(200).json(result);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+    });
+    router.route('/insertdevice')
+    .post((req, res) => {
+        const payload = {
+            type: req.body.type,
+            name: req.body.type,
+            detail: req.body.detail,
+            quantity: req.body.quantity,
+            price: req.body.price,
+        }
+        insertDevice(payload)
                 .then(result => {
                     res.status(200).json(result);
                 })

@@ -34,7 +34,7 @@ try {
     User = mongoose.model('users', userSchema);
 }
 
-router.route('/checktoken').get(authorization,(req, res) =>{
+router.route('/checktoken/').get(authorization,(req, res) =>{
         res.json({"status": 200,
         "message": 'Authorized'})
 })
