@@ -1,0 +1,97 @@
+<div class="card" class="bg-info  text-dark">
+    <div class="card-body ">
+        <h4 class="p-3 mb-4 bg-dark text-white">Add Equipments</h4>
+        <div class="row">
+            <div class="col-md-5">
+
+            </div>
+            <div class="col-md-8">
+                <form [formGroup]="equipmentForm">
+                    <div class="card">
+                        <div class="card-header">
+                            Equipment Form
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Equipment ID:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" formControlName='id' ngModel maxlength="6">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Equipment Name:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" formControlName='name'>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Equipment Type:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="type">
+                                          <option value=""></option>
+                                          <option *ngFor="let item of equipmentType" [value]="item">{{item}}</option>
+                                        </select>
+                                      </div>
+                                </div>
+                            </div>                                                
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Equipment Description:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" formControlName='description'>
+                                    </div>
+                                </div>
+                            </div>       
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Equipment Quantity:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                      <input type="number" class="form-control" formControlName='quantity'>
+                                    </div>
+                                </div>
+                            </div>                         
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Price:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                      <input type="number" class="form-control" formControlName='price'>
+                                    </div>
+                                </div>
+                            </div>                           
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary" (click)="addEquipment()">Add</button>&nbsp;
+                                    <button type="reset" class="btn btn-danger" (click)="resetFrom()">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br>
+    <div class="bg-dark"><br><br><br><br><br><div>
+
+</div>
