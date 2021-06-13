@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EquipmentsService } from '../../services/equipments.service'
+import { DevicesService } from '../../services/devices.service'
 
 @Component({
-  selector: 'app-addequipments',
-  templateUrl: './addequipments.component.html',
-  styleUrls: ['./addequipments.component.css']
+  selector: 'app-adddevices',
+  templateUrl: './adddevices.component.html',
+  styleUrls: ['./adddevices.component.css']
 })
-export class AddequipmentsComponent implements OnInit {
+export class AdddevicesComponent implements OnInit {
 
-  equipmentForm = new FormGroup({    
+  deviceForm = new FormGroup({    
     name: new FormControl('',[Validators.required]),
     type: new FormControl('',[Validators.required]),    
     description: new FormControl('',[Validators.required]),    
@@ -18,21 +18,21 @@ export class AddequipmentsComponent implements OnInit {
     id: new FormControl('',[Validators.required])
   });
 
-  equipmentType: string[] = ['RAM','Hard disk','Monitor','CPU','Mouse','Keyboard','Printer'];
+  deviceType: string[] = ['RAM','Hard disk','Monitor','CPU','Mouse','Keyboard','Printer'];
 
   previewLoaded: boolean = false;
 
-  constructor(private es : EquipmentsService) { }
+  constructor(private ds : DevicesService) { }
 
   ngOnInit(): void {
   }
 
-  addEquipment(){
-    this.es.addEquipment(this.equipmentForm.value).subscribe(
+  addDevice(){
+    this.ds.addDevice(this.deviceForm.value).subscribe(
       data => {
         console.log(data)
-        alert('Equipment added successfully');
-        this.equipmentForm.reset();
+        alert('Device added successfully');
+        this.deviceForm.reset();
       },
       err => {
         console.log(err);
@@ -41,7 +41,7 @@ export class AddequipmentsComponent implements OnInit {
   }
 
   resetFrom() {
-    this.equipmentForm.reset();
+    this.deviceForm.reset();
     this.previewLoaded = false;
     }
 

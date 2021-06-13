@@ -1,20 +1,20 @@
 <div class="card" class="bg-info  text-dark">
     <div class="card-body ">
-        <h4 class="p-3 mb-4 bg-dark text-white">Add Equipments</h4>
+        <h4 class="p-3 mb-4 bg-dark text-white">Add Devices</h4>
         <div class="row">
             <div class="col-md-5">
 
             </div>
             <div class="col-md-8">
-                <form [formGroup]="equipmentForm">
+                <form [formGroup]="deviceForm">
                     <div class="card">
                         <div class="card-header">
-                            Equipment Form
+                            Devices Form
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    Equipment ID:
+                                    Devices ID:
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
@@ -24,7 +24,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    Equipment Name:
+                                    Devices Name:
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
@@ -34,20 +34,20 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    Equipment Type:
+                                    Devices Type:
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <select class="form-control" formControlName="type">
                                           <option value=""></option>
-                                          <option *ngFor="let item of equipmentType" [value]="item">{{item}}</option>
+                                          <option *ngFor="let item of deviceType" [value]="item">{{item}}</option>
                                         </select>
                                       </div>
                                 </div>
                             </div>                                                
                             <div class="row">
                                 <div class="col-md-3">
-                                    Equipment Description:
+                                    Devices Description:
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
@@ -57,7 +57,7 @@
                             </div>       
                             <div class="row">
                                 <div class="col-md-3">
-                                    Equipment Quantity:
+                                    Devices Quantity:
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
@@ -78,7 +78,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="button" class="btn btn-primary" (click)="addEquipment()">Add</button>&nbsp;
+                                    <button type="button" class="btn btn-primary" (click)="addDevice()">Add</button>&nbsp;
                                     <button type="reset" class="btn btn-danger" (click)="resetFrom()">Reset</button>
                                 </div>
                             </div>

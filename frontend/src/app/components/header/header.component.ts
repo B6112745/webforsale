@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipmentsService } from '../../services/equipments.service'
+import { DevicesService } from '../../services/devices.service'
 import { CartService } from '../../services/cart.service'
 
 @Component({
@@ -9,7 +9,7 @@ import { CartService } from '../../services/cart.service'
 })
 export class HeaderComponent implements OnInit {
 
-  cart: EquipmentsService | any = []
+  cart: DevicesService | any = []
 
   constructor(private cr : CartService) { 
     this.cart = this.cr.getCart();

@@ -9,9 +9,9 @@ import { AddgamesComponent } from './components/addgames/addgames.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule,FormsModule} from '@angular/forms';
-import { EquipmentsComponent } from './components/equipments/equipments.component';
-import { AddequipmentsComponent } from './components/addequipments/addequipments.component';
 import { UserComponent } from './components/user/user.component';
+import { DevicesComponent } from './components/devices/devices.component';
+import { AdddevicesComponent } from './components/adddevices/adddevices.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,9 @@ import { UserComponent } from './components/user/user.component';
     HeaderComponent,
     GamesComponent,
     AddgamesComponent,
-    EquipmentsComponent,
-    AddequipmentsComponent,
-    UserComponent
+    UserComponent,
+    DevicesComponent,
+    AdddevicesComponent
   ],
   imports: [
     BrowserModule,
