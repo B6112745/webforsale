@@ -9,6 +9,7 @@ import { GamesService } from '../../services/games.service'
 export class GamesComponent implements OnInit {
 
   games: any;
+  show: boolean|any = true;
 
   constructor(private gs : GamesService) { 
     this.onLoading();
@@ -27,6 +28,10 @@ export class GamesComponent implements OnInit {
     }catch (error){
       console.log(error)
     }
+  }
+
+  onClick(){
+    this.show =!this.show
   }
 
 }
