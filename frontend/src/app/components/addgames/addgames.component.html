@@ -17,22 +17,22 @@
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-md-3">
-                                                            Game Name:
+                                                            Game Title:
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                    formControlName='name'>
+                                                                    formControlName='title'>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-3">
-                                                            Game Type:
+                                                            Game Genre:
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="form-group">
-                                                                <select class="form-control" formControlName="type">
+                                                                <select class="form-control" formControlName="genre">
                                                                     <option value=""></option>
                                                                     <option *ngFor="let item of gameType"
                                                                         [value]="item">{{item}}</option>
@@ -48,6 +48,17 @@
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
                                                                     formControlName='description'>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="row">
+                                                        <div class="col-md-3">
+                                                            Game Publisher:
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control"
+                                                                    formControlName='publisher'>
                                                             </div>
                                                         </div>
                                                     </div>

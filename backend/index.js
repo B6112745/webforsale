@@ -15,7 +15,18 @@ expressApp.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers','Content-Type, Option, Authorization')
     return next()
 });
-expressApp.use(expressFunction.json());
+
+
+  
+ expressApp.use(expressFunction.urlencoded({
+    limit: '50mb',
+    parameterLimit: 100000,
+    extended: true 
+  }));
+
+expressApp.use(expressFunction.json({
+    limit: '50mb'
+  }));
 
 expressApp.use((req, res, next) => {
     mongoose.connect(url, config)

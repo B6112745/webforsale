@@ -7,9 +7,11 @@ var Schema = require("mongoose").Schema;
 const gameSchema = Schema({
     title: String,
     genre: String,
-    developer: String,
+    description: String,
     publisher: String,
     price: Number,
+    file: String,
+    img: String
     
 }, {
     conllection: 'games'
@@ -22,6 +24,8 @@ const deviceSchema = Schema({
     detail: String,
     quantity: Number,
     price: Number,
+    file: String,
+    img: String
     
 }, {
     conllection: 'devices'
@@ -47,9 +51,11 @@ const insertGame = (dataGame) => {
         var new_game = new Game({
             title: dataGame.title,
             genre: dataGame.genre,
-            developer: dataGame.developer,
+            description: dataGame.description,
             publisher: dataGame.publisher,
             price: dataGame.price,
+            file: dataGame.file,
+            img: dataGame.img
         });
         new_game.save((err, data) => {
             if(err){
@@ -70,6 +76,8 @@ const insertDevice = (dataDevice) => {
             detail: dataDevice.detail,
             quantity: dataDevice.quantity,
             price: dataDevice.price,
+            file: dataDevice,file,
+            img: dataDevice.img
         });
         new_device.save((err, data) => {
             if(err){
@@ -82,15 +90,15 @@ const insertDevice = (dataDevice) => {
 }
 
 const getAllgame = () =>{
-    return new Promise((resolve, reject) => {
-        Game.find({}, (err,data) => {
+    return new Promise ((resolve, reject) => {
+        Game.find({},(err, data) => {
             if(err){
-                reject(new Error('Cannot get all game'))
+                reject(new Error('Cannot get all game'));
             }else{
-                resolve({data})
+                resolve(data)
             }
         })
-    })
+    });
 }
 
 const getGame = (genre) =>{
@@ -100,7 +108,7 @@ const getGame = (genre) =>{
                 reject(new Error('Cannot find Game'))
             }else{
                 if(data.length > 0){
-                    resolve({data:data})
+                    resolve(data)
                 }else{
                     reject(new Error('No '+genre+' Game'))
                 }
@@ -116,7 +124,7 @@ const getAlldevice = () =>{
             if(err){
                 reject(new Error('Cannot get all device'))
             }else{
-                resolve({data})
+                resolve(data)
             }
         })
     })
@@ -129,7 +137,7 @@ const getDevice = (type) =>{
                 reject(new Error('Cannot find Device'))
             }else{
                 if(data.length > 0){
-                    resolve({data:data})
+                    resolve(data)
                 }else{
                     reject(new Error('No '+type))
                 }
@@ -148,9 +156,11 @@ router.route('/insertgame')
         const payload = {
             title: req.body.title,
             genre: req.body.genre,
-            developer: req.body.developer,
+            description: req.body.description,
             publisher: req.body.publisher,
             price: req.body.price,
+            file: req.body.file,
+            img: req.body.img
         }
             insertGame(payload)
                 .then(result => {
@@ -168,6 +178,8 @@ router.route('/insertgame')
             detail: req.body.detail,
             quantity: req.body.quantity,
             price: req.body.price,
+            file: req.body.file,
+            img: req.body.img
         }
         insertDevice(payload)
                 .then(result => {
@@ -183,6 +195,7 @@ router.route('/insertgame')
     .get((req, res)  => {
         getAllgame()
         .then(result => {
+            console.log(result)
             res.status(200).json(result)
         })
         .catch( err => {
@@ -220,7 +233,7 @@ router.route('/insertgame')
       const type = req.params.type
       getDevice(type)
       .then(result => {
-          console.log(result)
+            console.log(result)
             res.status(200).send(result)
       })
       .catch(err => {
