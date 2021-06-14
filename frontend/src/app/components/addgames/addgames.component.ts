@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { GamesService } from '../../services/games.service'
 
 @Component({
@@ -10,7 +10,7 @@ import { GamesService } from '../../services/games.service'
 export class AddgamesComponent implements OnInit {
 
   gameForm = new FormGroup({    
-    title: new FormControl('',[Validators.required]),
+    title: new FormControl('',[Validators.required, Validators.pattern('^[ก-๙0-9a-zA-Z.\\s]+$')]),
     genre: new FormControl('',[Validators.required]),    
     description: new FormControl('',[Validators.required]),
     publisher: new FormControl('',[Validators.required]),
@@ -20,6 +20,11 @@ export class AddgamesComponent implements OnInit {
   });
 
   gameType: string[] = ['Strategy','Adventure','Sport','Fighting','RPG','Puzzle','FPS'];
+
+  get title() {return this.gameForm.get('title') as FormArray;}
+  get description() {return this.gameForm.get('description') as FormArray;}
+  get publisher() {return this.gameForm.get('publisher') as FormArray;}
+  get price() {return this.gameForm.get('price') as FormArray;}
 
   previewLoaded: boolean = false;
 
