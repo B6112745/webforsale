@@ -126,7 +126,7 @@ const getGame = (genre) =>{
 
 const getAlldevice = () =>{
     return new Promise((resolve, reject) => {
-        Game.find({}, (err,data) => {
+        Device.find({}, (err,data) => {
             if(err){
                 reject(new Error('Cannot get all device'))
             }else{

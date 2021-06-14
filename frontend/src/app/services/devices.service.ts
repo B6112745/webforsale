@@ -12,14 +12,14 @@ export class DevicesService {
   constructor(private http: HttpClient) { }
 
   addDevice(device : any){
-    return this.http.post<any>('http://localhost:3000/devices/add', device)
+    return this.http.post<any>('http://localhost:3000/product/insertdevice', device)
     .pipe(map(data => {
       return data;
     }));
   }
 
   getDevice(){
-    return this.http.get<any>('http://localhost:3000/devices/get')
+    return this.http.get<any>('http://localhost:3000/product/getdevice')
     .pipe(map(data => {
       if (data) {
         this.devices = data;
