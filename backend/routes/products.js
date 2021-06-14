@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 var Schema = require("mongoose").Schema;
 
 const gameSchema = Schema({
+    id: String,
     title: String,
     genre: String,
     description: String,
@@ -19,6 +20,7 @@ const gameSchema = Schema({
 
 
 const deviceSchema = Schema({
+    id: String,
     type: String,
     name: String,
     detail: String,
@@ -49,6 +51,7 @@ try {
 const insertGame = (dataGame) => {
     return new Promise ((resolve, reject) => {
         var new_game = new Game({
+            id: dataGame.id,
             title: dataGame.title,
             genre: dataGame.genre,
             description: dataGame.description,
@@ -71,12 +74,13 @@ const insertGame = (dataGame) => {
 const insertDevice = (dataDevice) => {
     return new Promise ((resolve, reject) => {
         var new_device = new Device({
+            id: dataDevice.id,
             type: dataDevice.type,
             name: dataDevice.name,
             detail: dataDevice.detail,
             quantity: dataDevice.quantity,
             price: dataDevice.price,
-            file: dataDevice,file,
+            file: dataDevice.file,
             img: dataDevice.img
         });
         new_device.save((err, data) => {
@@ -153,41 +157,61 @@ const getDevice = (type) =>{
 
 router.route('/insertgame')
     .post((req, res) => {
-        const payload = {
-            title: req.body.title,
-            genre: req.body.genre,
-            description: req.body.description,
-            publisher: req.body.publisher,
-            price: req.body.price,
-            file: req.body.file,
-            img: req.body.img
-        }
-            insertGame(payload)
-                .then(result => {
-                    res.status(200).json(result);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+       
+        getAllgame()
+        .then(result => {
+             var count = result.length + 1
+             const payload = {
+                id: 'G'+count,
+                title: req.body.title,
+                genre: req.body.genre,
+                description: req.body.description,
+                publisher: req.body.publisher,
+                price: req.body.price,
+                file: req.body.file,
+                img: req.body.img
+            }
+                insertGame(payload)
+                    .then(result => {
+                        res.status(200).json(result);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+        })
+        .catch(err =>{
+            consolr.log(err)
+        })
+       
+       
     });
  router.route('/insertdevice')
     .post((req, res) => {
-        const payload = {
-            type: req.body.type,
-            name: req.body.name,
-            detail: req.body.detail,
-            quantity: req.body.quantity,
-            price: req.body.price,
-            file: req.body.file,
-            img: req.body.img
-        }
-        insertDevice(payload)
-                .then(result => {
-                    res.status(200).json(result);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+        getAlldevice()
+        .then(result => {
+            var count = result.length + 1
+            const payload = {
+                id: 'D'+count,
+                type: req.body.type,
+                name: req.body.name,
+                detail: req.body.detail,
+                quantity: req.body.quantity,
+                price: req.body.price,
+                file: req.body.file,
+                img: req.body.img
+            }
+            insertDevice(payload)
+                    .then(result => {
+                        res.status(200).json(result);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        
     });
 
 
