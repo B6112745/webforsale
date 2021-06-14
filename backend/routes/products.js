@@ -12,7 +12,8 @@ const gameSchema = Schema({
     publisher: String,
     price: Number,
     file: String,
-    img: String
+    img: String,
+    game: {type: mongoose.Schema.Types.ObjectId,ref:'history'}
     
 }, {
     conllection: 'games'
@@ -27,7 +28,8 @@ const deviceSchema = Schema({
     quantity: Number,
     price: Number,
     file: String,
-    img: String
+    img: String,
+    device: {type: mongoose.Schema.Types.ObjectId,ref:'history'}
     
 }, {
     conllection: 'devices'
