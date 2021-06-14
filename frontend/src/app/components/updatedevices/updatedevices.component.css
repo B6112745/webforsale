@@ -1,0 +1,10 @@
+.text{
+    font-size: 20px;
+    color: rgb(251, 252, 248);
+    text-shadow: 5px 3px 5px rgba(176, 242, 247, 0.514);
+}
+.text2{
+    font-size: 18px;
+    color: rgb(206, 237, 241);
+    text-shadow: 5px 3px 5px rgba(130, 243, 237, 0.692);
+}

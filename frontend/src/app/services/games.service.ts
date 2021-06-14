@@ -29,4 +29,8 @@ export class GamesService {
     }));
   }
 
+  getSomeDevices(id:number){
+    return this.games[id]
+  }
+
 }

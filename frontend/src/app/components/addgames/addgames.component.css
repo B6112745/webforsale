@@ -1,0 +1,9 @@
+.grad {
+    background-image: linear-gradient(to right, rgb(255, 218, 7, 0.795), rgba(46, 2, 31, 0.37));
+  }
+.grad2 {
+    background: rgb(255, 218, 7);
+  }
+.grad3 {
+    background: rgb(255, 218, 7);
+  }

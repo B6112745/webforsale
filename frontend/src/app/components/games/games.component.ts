@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GamesService } from '../../services/games.service'
+import { CartService } from '../../services/cart.service'
 
 @Component({
   selector: 'app-games',
@@ -11,7 +12,7 @@ export class GamesComponent implements OnInit {
   games: any;
   show: boolean|any = false;
 
-  constructor(private gs : GamesService) { 
+  constructor(private gs : GamesService, private cr : CartService) { 
     this.onLoading();
   }
 
@@ -32,5 +33,10 @@ export class GamesComponent implements OnInit {
 
   onClick(){
     this.show =!this.show
+  }
+
+  addToCart(id:number){
+    
+    return this.cr.addG(id)
   }
 }

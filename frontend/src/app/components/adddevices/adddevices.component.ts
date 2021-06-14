@@ -12,10 +12,11 @@ export class AdddevicesComponent implements OnInit {
   deviceForm = new FormGroup({    
     name: new FormControl('',[Validators.required]),
     type: new FormControl('',[Validators.required]),    
-    description: new FormControl('',[Validators.required]),    
+    detail: new FormControl('',[Validators.required]),    
     price: new FormControl('',[Validators.required]),
     quantity: new FormControl('',[Validators.required]),
-    id: new FormControl('',[Validators.required])
+    file: new FormControl('',[Validators.required]),
+    img: new FormControl('',[Validators.required])
   });
 
   deviceType: string[] = ['RAM','Hard disk','Monitor','CPU','Mouse','Keyboard','Printer'];
@@ -39,6 +40,21 @@ export class AdddevicesComponent implements OnInit {
       }
     );
   }
+
+  onChangeImg(e : any){
+    if (e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.previewLoaded = true;
+          this.deviceForm.patchValue({
+            img: reader.result
+          })
+      }
+    }
+  }
+  
 
   resetFrom() {
     this.deviceForm.reset();
