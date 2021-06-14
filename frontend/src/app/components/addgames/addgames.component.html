@@ -20,8 +20,17 @@
                                                     </div>
                                                     <div class="col-md-9">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control"
-                                                                formControlName='title'>
+                                                            <input  type="text" 
+                                                                    class="form-control"
+                                                                    formControlName='title'>
+                                                                    <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+                                                                        <div *ngIf="title.errors?.required">
+                                                                            Title is required.
+                                                                        </div>                                                            
+                                                                        <div *ngIf="title.errors?.pattern">
+                                                                            Your title have special characters !!
+                                                                        </div>   
+                                                                    </div>   
                                                         </div>
                                                     </div>
                                                 </div>
@@ -47,6 +56,12 @@
                                                         <div class="form-group">
                                                             <input type="text" class="form-control"
                                                                 formControlName='description'>
+                                                                <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+                                                                    <div *ngIf="description.errors?.required">
+                                                                        Description is required.
+                                                                    </div>    
+                                                                </div>
+                                                                
                                                         </div>
                                                     </div>
                                                 </div>
@@ -58,6 +73,11 @@
                                                         <div class="form-group">
                                                             <input type="text" class="form-control"
                                                                 formControlName='publisher'>
+                                                                <div *ngIf="publisher.invalid && (publisher.dirty || publisher.touched)" class="alert alert-danger">
+                                                                    <div *ngIf="publisher.errors?.required">
+                                                                        Publisher is required.
+                                                                    </div>   
+                                                                </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -69,6 +89,11 @@
                                                         <div class="form-group">
                                                             <input type="number" class="form-control"
                                                                 formControlName='price'>
+                                                                <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+                                                                    <div *ngIf="price.errors?.required">
+                                                                        Price is required.
+                                                                    </div>   
+                                                                </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -116,5 +141,6 @@
     </div>
     <div class="grad">
             <app-updategames></app-updategames>
+            <br>
     </div>
 </div>
