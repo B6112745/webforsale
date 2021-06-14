@@ -288,12 +288,12 @@
                                         <thead class="thead-inverse" style="background-color: #06131d9c;">
                                             <tr>
                                                 <th class="text5">
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     Preview</th>
-                                                <th class="text7">Name</th>
+                                                <th class="text7">Name</th>                                
                                                 <th class="text7">Description</th>
-                                                <th class="text7">Type</th>
+                                                <th class="text7">Genre</th>
+                                                <th class="text7">Publisher</th>
                                                 <th class="text7">Price</th>
                                                 <th class="text7">Add to Cart</th>
                                             </tr>
@@ -302,9 +302,10 @@
                                             <tr>
                                                 <tr *ngFor="let item of games; index as i">
                                                 <td><img [src]="item.img" style="width: 300px"></td>
-                                                <td class="text2">Pinoy</td>
+                                                <td class="text2">{{item.title}}</td>
                                                 <td class="text2">{{item.description}}</td>
-                                                <td class="text2">{{item.type}}</td>
+                                                <td class="text2">{{item.genre}}</td>
+                                                <td class="text2">{{item.publisher}}</td>
                                                 <td class="text2">{{item.price}}</td>
                                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <a class="btn btn-outline-primary" role="button">
