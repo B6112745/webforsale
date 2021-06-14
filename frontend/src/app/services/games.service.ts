@@ -12,14 +12,14 @@ export class GamesService {
   constructor(private http: HttpClient) { }
 
   addGame(game : any){
-    return this.http.post<any>('http://localhost:3000/games/add', game)
+    return this.http.post<any>('http://localhost:3000/product/insertgame', game)
     .pipe(map(data => {
       return data;
     }));
   }
 
   getgame(){
-    return this.http.get<any>('http://localhost:3000/games/get')
+    return this.http.get<any>('http://localhost:3000/product/getgame')
     .pipe(map(data => {
       if (data) {
         this.games = data;

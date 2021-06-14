@@ -10,9 +10,10 @@ import { GamesService } from '../../services/games.service'
 export class AddgamesComponent implements OnInit {
 
   gameForm = new FormGroup({    
-    name: new FormControl('',[Validators.required]),
-    type: new FormControl('',[Validators.required]),    
-    description: new FormControl('',[Validators.required]),    
+    title: new FormControl('',[Validators.required]),
+    genre: new FormControl('',[Validators.required]),    
+    description: new FormControl('',[Validators.required]),
+    publisher: new FormControl('',[Validators.required]),
     price: new FormControl('',[Validators.required]),
     file: new FormControl('',[Validators.required]),
     img: new FormControl('',[Validators.required])
