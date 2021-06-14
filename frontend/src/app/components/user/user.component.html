@@ -1,39 +1,9 @@
+<video class="video-fluid z-depth-1" autoplay loop controls muted width="400" height="400">
+    <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
+</video>
 
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Your Shoping Cart</h4>
-                
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <table class="table table-striped table-inverse">
+<div class="embed-responsive embed-responsive-16by9" autoplay loop controls muted width="100" height="100">
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
+</div>
 
-                    <thead class="thead-inverse">
-                        <tr>
-                            <th>ID.</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of cart; index as i">
-                            <td scope="row">{{item.p_id}}</td>
-                            <td>{{item.p_name}}</td>
-                            <td>{{item.p_price}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p class="text-right">
-                    <b>Subtotal: </b> {{getSumPrice()}}
-                </p>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
 
-                <button type="button" class="btn btn-secondary" data- dismiss="modal">Close</button>
-
-            </div>
-        </div>
-    </div>
