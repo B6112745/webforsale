@@ -1,0 +1,34 @@
+.center_div2 {
+    margin:auto;
+    width:85%;
+}
+
+.grad {
+    background-image: linear-gradient(to bottom, rgb(6, 76, 109, 0.959), rgba(25, 12, 37, 0.384));
+  }
+
+.grad2 {
+    background-image: linear-gradient(to right, rgba(13, 73, 99, 0.671), rgba(25, 12, 37, 0.473));
+  }
+
+.grad3 {
+    background: rgb(3, 29, 51);
+  }
+
+.text{
+    font-size: 50px;
+    color: rgb(251, 252, 248);
+    text-shadow: 5px 3px 5px rgba(176, 242, 247, 0.514);
+}
+
+.text2{
+    font-size: 18px;
+    color: rgb(12, 215, 241);
+    text-shadow: 5px 3px 5px rgba(176, 242, 247, 0.514);
+}
+
+.text3{
+    font-size: 25px;
+    color: rgb(251, 252, 248);
+    text-shadow: 5px 3px 5px rgba(176, 242, 247, 0.514);
+}
