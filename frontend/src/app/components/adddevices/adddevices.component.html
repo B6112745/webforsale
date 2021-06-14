@@ -14,16 +14,6 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    Devices ID:
-                                </div>
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                      <input type="text" class="form-control" formControlName='id' ngModel maxlength="6">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
                                     Devices Name:
                                 </div>
                                 <div class="col-md-9">
@@ -47,11 +37,11 @@
                             </div>                                                
                             <div class="row">
                                 <div class="col-md-3">
-                                    Devices Description:
+                                    Devices Detail:
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                      <input type="text" class="form-control" formControlName='description'>
+                                      <input type="text" class="form-control" formControlName='detail'>
                                     </div>
                                 </div>
                             </div>       
@@ -74,7 +64,30 @@
                                       <input type="number" class="form-control" formControlName='price'>
                                     </div>
                                 </div>
-                            </div>                           
+                            </div>  
+                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Image:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="file" class="form-control-file"
+                                            formControlName='file'
+                                            (change)="onChangeImg($event)">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+
+                                </div>
+                                <div class="col-md-9">
+                                    <img *ngIf="previewLoaded" class="img-thumbnail"
+                                        [src]="this.deviceForm.value.img" style="height:150px;">
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -86,12 +99,12 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-8">
-
-            </div>
         </div>
     </div>
-    <br><br><br><br><br><br><br>
-    <div class="bg-dark"><br><br><br><br><br><div>
+    <div class="grad5">
+        <card>
+            <app-updatedevices></app-updatedevices>
+        </card>
+    </div>
 
 </div>

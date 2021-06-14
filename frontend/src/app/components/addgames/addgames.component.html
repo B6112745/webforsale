@@ -1,122 +1,120 @@
-<div style="background-image: url(https://i.pinimg.com/originals/f2/83/66/f283661623856bb3856f62e53887e8d1.jpg);">
-    <div class="full-bg-img mask rgba-black-light">
-        <div class="container flex-center">
-            <div class="row w-100">
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <div class="card" class="bg-warning text-dark">
-                            <div class="card-body ">
-                                <h4 class="p-3 mb-4 bg-dark text-white">Add Game</h4>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <form [formGroup]="gameForm">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    Game Form
+<div class="grad3">
+    <div class="container flex-center">
+        <div class="row w-100">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <div class="grad2">
+                        <div class="card-body ">
+                            <h4 class="p-3 mb-4 bg-dark text-white">Add Game</h4>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form [formGroup]="gameForm">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Game Form
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        Game Title:
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control"
+                                                                formControlName='title'>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            Game Title:
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                    formControlName='title'>
-                                                            </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        Game Genre:
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <select class="form-control" formControlName="genre">
+                                                                <option value=""></option>
+                                                                <option *ngFor="let item of gameType" [value]="item">
+                                                                    {{item}}</option>
+                                                            </select>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            Game Genre:
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <div class="form-group">
-                                                                <select class="form-control" formControlName="genre">
-                                                                    <option value=""></option>
-                                                                    <option *ngFor="let item of gameType"
-                                                                        [value]="item">{{item}}</option>
-                                                                </select>
-                                                            </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        Game Description:
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control"
+                                                                formControlName='description'>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            Game Description:
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                    formControlName='description'>
-                                                            </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        Game Publisher:
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control"
+                                                                formControlName='publisher'>
                                                         </div>
                                                     </div>
-                                                     <div class="row">
-                                                        <div class="col-md-3">
-                                                            Game Publisher:
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                    formControlName='publisher'>
-                                                            </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        Price:
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <input type="number" class="form-control"
+                                                                formControlName='price'>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            Price:
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <div class="form-group">
-                                                                <input type="number" class="form-control"
-                                                                    formControlName='price'>
-                                                            </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        Image:
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <input type="file" class="form-control-file"
+                                                                formControlName='file' (change)="onChangeImg($event)">
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            Image:
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <div class="form-group">
-                                                                <input type="file" class="form-control-file"
-                                                                    formControlName='file'
-                                                                    (change)="onChangeImg($event)">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                </div>
 
-                                                    <div class="row">
-                                                        <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-3">
 
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <img *ngIf="previewLoaded" class="img-thumbnail"
-                                                                [src]="this.gameForm.value.img" style="height:150px;">
-                                                        </div>
                                                     </div>
+                                                    <div class="col-md-9">
+                                                        <img *ngIf="previewLoaded" class="img-thumbnail"
+                                                            [src]="this.gameForm.value.img" style="height:150px;">
+                                                    </div>
+                                                </div>
 
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <button type="button" class="btn btn-primary"
-                                                                (click)="addGame()">Add</button>&nbsp;
-                                                            <button type="reset" class="btn btn-danger"
-                                                                (click)="resetFrom()">Reset</button>
-                                                        </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <button type="button" class="btn btn-primary"
+                                                            (click)="addGame()">Add</button>&nbsp;
+                                                        <button type="reset" class="btn btn-danger"
+                                                            (click)="resetFrom()">Reset</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <br><br><br>
-                            <div class="bg-dark"><br><br><br><br>
-                            <div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+    </div>
+    <div class="grad">
+            <app-updategames></app-updategames>
     </div>
 </div>

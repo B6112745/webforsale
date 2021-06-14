@@ -12,6 +12,8 @@ import { ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
 import { DevicesComponent } from './components/devices/devices.component';
 import { AdddevicesComponent } from './components/adddevices/adddevices.component';
+import { UpdatedevicesComponent } from './components/updatedevices/updatedevices.component';
+import { UpdategamesComponent } from './components/updategames/updategames.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { AdddevicesComponent } from './components/adddevices/adddevices.componen
     AddgamesComponent,
     UserComponent,
     DevicesComponent,
-    AdddevicesComponent
+    AdddevicesComponent,
+    UpdatedevicesComponent,
+    UpdategamesComponent
   ],
   imports: [
     BrowserModule,
