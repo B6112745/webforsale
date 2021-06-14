@@ -1,57 +1,94 @@
 var expressFunction = require('express');
 const router = expressFunction.Router();
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+
 
 var Schema = require("mongoose").Schema;
 const historySchema = Schema({
-    
+    id: {type: mongoose.Schema.Types.ObjectId},
+    owner: {type: mongoose.Schema.Types.ObjectId,ref:'user'},
+    game: {type: mongoose.Schema.Types.ObjectId,ref:'games'},
+    device: {type: mongoose.Schema.Types.ObjectId,ref:'devices'},
 },  {
-    conllection: 'history'
+    collection: 'history'
 });
 
 let History
 try {
-    History = mongoose.model('history')
-} catch (error) {
-    History = mongoose.model('history', historySchema);
+    History = mongoose.model('historys')
+}   catch(error){
+    History = mongoose.model('historys', historySchema);
 }
 
-const insertUser = (dataUser) => {
-    return new Promise ((resolve, reject) => {
-        var new_user = new User({
-            username: dataUser.username,
-            password: dataUser.password
-        });
-        new_user.save((err, data) => {
+const getHistory = () => {
+    return new Promise ((resolve,reject) => {
+        History.find({}).populate('games','name').exec()
+        .then(() => {
             if(err){
-                reject(new Error('Cannot insert user to DB!'));
-            }else{
-                resolve({massage: 'Sign up successfully'});
+                reject(new Error('Cannot get products!!'));
+            }else {
+                if(data){
+                    resolve(data)
+                }else {
+                    reject(new Error('Cannot get product!!',{show: data}));
+                }
             }
         });
     });
 }
-router.route('/history')
-    .post((req, res) => {
-        makeHash(req.body.password)
-        .then(hashText => {
-            const playload = {
-                username: req.body.username,
-                password: hashText,
+const addhistory = (data) => {
+    return new Promise ((resolve, reject) => {
+        var new_history = new History({
+            _id: mongoose.Types.ObjectId(),
+            owner: data.owner,
+            game: data.game,
+            device: data.device
+        });
+        new_history.save((err, data) => {
+            if(err){
+                reject(new Error('Cannot insert user to DB!'));
+            }else{
+                resolve({massage: 'Insert successfully'});
             }
-            console.log(playload);
-            insertUser(playload)
-                .then(result => {
-                    console.log(result);
-                    res.status(200).json(result);
+        });
+    });
+}
+router.route('/addhistory')
+.post((req, res) => {
+    const payload = {
+        _id: mongoose.Types.ObjectId(),
+         owner: req.body.owner,
+         game: req.body.game,
+         device: req.body.device
+    }
+        addhistory(payload)
+            .then(result => {
+                res.status(200).json(result);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+});
+
+router.route('/history')
+    .get((req,res) => {
+        console.log('Hello')
+        //getHistory(req.body)
+        History.find({}).populate('game').populate('device').exec()
+        .then(docs => {
+            res.status(200).json({
+                count: docs.length,
+                history: docs.map(doc => {
+                  return {
+                    _id: doc._id,
+                    game: doc.game,
+                    device: doc.device,
+                  };
                 })
-                .catch(err => {
-                    console.log(err);
-                })
+              });
         })
         .catch(err => {
-
+            console.log(err);
         })
     });
     
