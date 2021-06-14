@@ -20,11 +20,11 @@ const deviceSchema = Schema({
     type: String,
     name: String,
     detail: String,
-    quantity: String,
+    quantity: Number,
     price: Number,
     
 }, {
-    conllection: 'games'
+    conllection: 'devices'
 });
 
 let Game
@@ -40,6 +40,7 @@ try {
 } catch (error) {
     Device = mongoose.model('devices', deviceSchema);
 }
+
 
 const insertGame = (dataGame) => {
     return new Promise ((resolve, reject) => {
@@ -74,11 +75,73 @@ const insertDevice = (dataDevice) => {
             if(err){
                 reject(new Error('Cannot insert user to DB!'));
             }else{
-                resolve({massage: 'Insert successfully'});
+                resolve({massage: data});
             }
         });
     });
 }
+
+const getAllgame = () =>{
+    return new Promise((resolve, reject) => {
+        Game.find({}, (err,data) => {
+            if(err){
+                reject(new Error('Cannot get all game'))
+            }else{
+                resolve({data})
+            }
+        })
+    })
+}
+
+const getGame = (genre) =>{
+    return new Promise((resolve, reject) => {
+        Game.find({genre: genre}, (err,data) => {
+            if(err){
+                reject(new Error('Cannot find Game'))
+            }else{
+                if(data.length > 0){
+                    resolve({data:data})
+                }else{
+                    reject(new Error('No '+genre+' Game'))
+                }
+            }
+        })
+    })
+}
+
+
+const getAlldevice = () =>{
+    return new Promise((resolve, reject) => {
+        Game.find({}, (err,data) => {
+            if(err){
+                reject(new Error('Cannot get all device'))
+            }else{
+                resolve({data})
+            }
+        })
+    })
+}
+
+const getDevice = (type) =>{
+    return new Promise((resolve, reject) => {
+        Device.find({type: type}, (err,data) => {
+            if(err){
+                reject(new Error('Cannot find Device'))
+            }else{
+                if(data.length > 0){
+                    resolve({data:data})
+                }else{
+                    reject(new Error('No '+type))
+                }
+            }
+        })
+    })
+}
+
+
+
+
+
 
 router.route('/insertgame')
     .post((req, res) => {
@@ -97,11 +160,11 @@ router.route('/insertgame')
                     console.log(err);
                 })
     });
-    router.route('/insertdevice')
+ router.route('/insertdevice')
     .post((req, res) => {
         const payload = {
             type: req.body.type,
-            name: req.body.type,
+            name: req.body.name,
             detail: req.body.detail,
             quantity: req.body.quantity,
             price: req.body.price,
@@ -114,4 +177,55 @@ router.route('/insertgame')
                     console.log(err);
                 })
     });
+
+
+  router.route('/getgame')
+    .get((req, res)  => {
+        getAllgame()
+        .then(result => {
+            res.status(200).json(result)
+        })
+        .catch( err => {
+            console.log(err);
+        })
+    })
+
+  router.route('/getgame/:genre')
+  .get((req, res) => {
+      const genre = req.params.genre
+      getGame(genre)
+      .then(result => {
+          console.log(result)
+            res.status(200).send(result)
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(400).json('No '+ genre + ' Game')
+      })
+  })
+
+    router.route('/getdevice')
+    .get((req, res)  => {
+        getAlldevice()
+        .then(result => {
+            res.status(200).json(result)
+        })
+        .catch( err => {
+            console.log(error);
+        })
+    })
+
+    router.route('/getdevice/:type')
+  .get((req, res) => {
+      const type = req.params.type
+      getDevice(type)
+      .then(result => {
+          console.log(result)
+            res.status(200).send(result)
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(400).json('No '+ type)
+      })
+  })
 module.exports = router
