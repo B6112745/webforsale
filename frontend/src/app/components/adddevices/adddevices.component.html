@@ -19,6 +19,14 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                       <input type="text" class="form-control" formControlName='name'>
+                                      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                                        <div *ngIf="name.errors?.required">
+                                            Name is required.
+                                        </div>                                                            
+                                        <div *ngIf="name.errors?.pattern">
+                                            Your name have special characters !!
+                                        </div>   
+                                        </div> 
                                     </div>
                                 </div>
                             </div>
@@ -42,6 +50,11 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                       <input type="text" class="form-control" formControlName='detail'>
+                                      <div *ngIf="detail.invalid && (detail.dirty || detail.touched)" class="alert alert-danger">
+                                        <div *ngIf="detail.errors?.required">
+                                            Detail is required.
+                                        </div> 
+                                        </div> 
                                     </div>
                                 </div>
                             </div>       
@@ -52,6 +65,11 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                       <input type="number" class="form-control" formControlName='quantity'>
+                                      <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
+                                        <div *ngIf="quantity.errors?.required">
+                                            Quantity is required.
+                                        </div>  
+                                        </div>
                                     </div>
                                 </div>
                             </div>                         
@@ -62,6 +80,11 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                       <input type="number" class="form-control" formControlName='price'>
+                                      <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+                                        <div *ngIf="price.errors?.required">
+                                            Price is required.
+                                        </div>  
+                                        </div>
                                     </div>
                                 </div>
                             </div>  
