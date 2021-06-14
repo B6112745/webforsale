@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EquipmentsService } from '../services/equipments.service'
+import { DevicesService } from '../services/devices.service'
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +8,14 @@ export class CartService {
 
   counter: Number =0;
   sumPrice: Number =0;
-  cart: EquipmentsService|any =[]
+  cart: DevicesService|any =[]
 
-  constructor(private eq : EquipmentsService) { }
+  constructor(private de : DevicesService) { }
 
   add(id: number){
-    console.log('Add euipment idt: '+id+' to cart');
-    this.cart.push(this.eq.getSomeEquipment(id))
-    this.sumPrice += this.eq.getSomeEquipment(id).price;
+    console.log('Add device idt: '+id+' to cart');
+    this.cart.push(this.de.getSomeDevices(id))
+    this.sumPrice += this.de.getSomeDevices(id).price;
     this.counter = this.cart.length
   }
 
