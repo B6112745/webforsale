@@ -47,6 +47,7 @@ export class AddgamesComponent implements OnInit {
         console.log(err);
       }
     );
+    window.location.reload();
   }
 
   onChangeImg(e : any){

@@ -35,4 +35,20 @@ export class UpdategamesComponent implements OnInit {
     }
   }
 
+  delgame(id : any){
+    console.log(id)
+    try {
+      this.token = this.local.get('user').token
+      this.gs.deleteGame(this.token,id).subscribe(
+        data => {
+          this.games = data;
+        },err => {
+          console.log(err)
+        });
+    }catch (error){
+      console.log(error)
+    }
+    // window.location.reload();
+  }
+
 }

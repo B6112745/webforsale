@@ -32,5 +32,21 @@ export class UpdatedevicesComponent implements OnInit {
     }
   }
 
+  deldevice(id : any){
+    try {
+      this.token = this.local.get('user').token
+      this.ds.delDevice(this.token,id).subscribe(
+        data => {
+          this.devices = data;
+        },err => {
+          console.log(err)
+        });
+    }catch (error){
+      console.log(error)
+    }
+    window.location.reload();
+  }
+
+
 
 }

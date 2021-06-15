@@ -31,6 +31,12 @@ export class DevicesService {
     }));
   }
 
+  delDevice(token: any,id :any){
+    console.log(id)
+    const headers = {'Authorization': token}
+    return this.http.delete<any>('http://localhost:3000/product/deletedevice/'+id,{headers})
+  }
+
   getSomeDevices(id:number){
     return this.devices[id]
   }
