@@ -170,6 +170,24 @@ const deletedevicebyid = (id) => {
     })
 }
 
+const deletegamebyid = (id) => {
+    return new Promise((resolve, reject) => {
+        Game.deleteOne({id: id}, (err,data) => {
+            console.log(data.deletedCount)
+            if(err){
+                reject(new Error('Cannot delete Device'))
+            }else{
+                if(data.deletedCount != 0){
+                    resolve(data)
+                }else{
+                    reject(new Error('No device id'))
+                }
+            }
+        })
+    })
+}
+
+
 
 
 
@@ -297,6 +315,19 @@ router.route('/insertgame')
       .catch(err => {
             console.log(err)
             res.status(400).json('No Device '+ id)
+      })
+  })
+  router.route('/deletegame/:id')
+  .delete(authorization,(req,res) => {
+      const id = req.params.id
+      deletegamebyid(id)
+      .then(result =>{
+        console.log(result)
+        res.status(200).send(result)
+      })
+      .catch(err => {
+            console.log(err)
+            res.status(400).json('No Game '+ id)
       })
   })
 
