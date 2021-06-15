@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DevicesService } from '../../services/devices.service'
-
+import { LocalStorageService } from 'angular-web-storage'
 @Component({
   selector: 'app-updatedevices',
   templateUrl: './updatedevices.component.html',
@@ -9,8 +9,8 @@ import { DevicesService } from '../../services/devices.service'
 export class UpdatedevicesComponent implements OnInit {
 
   devices: any;
-
-  constructor(private ds : DevicesService) { 
+  token:any;
+  constructor(public local: LocalStorageService,private ds : DevicesService) { 
 
     this.onLoading();
   }
@@ -20,7 +20,8 @@ export class UpdatedevicesComponent implements OnInit {
 
   onLoading(){
     try {
-      this.ds.getDevice().subscribe(
+      this.token = this.local.get('user').token
+      this.ds.getDevice(this.token).subscribe(
         data => {
           this.devices = data;
         },err => {

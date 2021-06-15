@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GamesService } from '../../services/games.service'
 import { CartService } from '../../services/cart.service'
-
+import { LocalStorageService } from 'angular-web-storage'
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
@@ -10,9 +10,10 @@ import { CartService } from '../../services/cart.service'
 export class GamesComponent implements OnInit {
 
   games: any;
+  token: any
   show: boolean|any = false;
 
-  constructor(private gs : GamesService, private cr : CartService) { 
+  constructor(public local: LocalStorageService,private gs : GamesService, private cr : CartService) { 
     this.onLoading();
   }
 
@@ -20,7 +21,8 @@ export class GamesComponent implements OnInit {
 
   onLoading(){
     try {
-      this.gs.getgame().subscribe(
+      this.token = this.local.get('user').token
+      this.gs.getgame(this.token).subscribe(
         data => {
           this.games = data;
         },err => {

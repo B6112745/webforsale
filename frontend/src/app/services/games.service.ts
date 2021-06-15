@@ -18,8 +18,9 @@ export class GamesService {
     }));
   }
 
-  getgame(){
-    return this.http.get<any>('http://localhost:3000/product/getgame')
+  getgame(token: any){
+    const headers = {'Authorization': token}
+    return this.http.get<any>('http://localhost:3000/product/getgame',{headers})
     .pipe(map(data => {
       if (data) {
         this.games = data;

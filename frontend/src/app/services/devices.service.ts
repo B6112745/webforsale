@@ -18,8 +18,9 @@ export class DevicesService {
     }));
   }
 
-  getDevice(){
-    return this.http.get<any>('http://localhost:3000/product/getdevice')
+  getDevice(token: any){
+    const headers = {'Authorization': token}
+    return this.http.get<any>('http://localhost:3000/product/getdevice',{headers})
     .pipe(map(data => {
       if (data) {
         this.devices = data;
