@@ -1,4 +1,5 @@
-var expressFunction = require('express');
+const expressFunction = require('express');
+const authorization = require('../config/authorize');
 const router = expressFunction.Router();
 const mongoose = require('mongoose');
 
@@ -152,13 +153,29 @@ const getDevice = (type) =>{
     })
 }
 
+const deletedevicebyid = (id) => {
+    return new Promise((resolve, reject) => {
+        Device.deleteOne({id: id}, (err,data) => {
+            console.log(data.deletedCount)
+            if(err){
+                reject(new Error('Cannot delete Device'))
+            }else{
+                if(data.deletedCount != 0){
+                    resolve(data)
+                }else{
+                    reject(new Error('No device id'))
+                }
+            }
+        })
+    })
+}
 
 
 
 
 
 router.route('/insertgame')
-    .post((req, res) => {
+    .post(authorization,(req, res) => {
        
         getAllgame()
         .then(result => {
@@ -188,7 +205,7 @@ router.route('/insertgame')
        
     });
  router.route('/insertdevice')
-    .post((req, res) => {
+    .post(authorization,(req, res) => {
         getAlldevice()
         .then(result => {
             var count = result.length + 1
@@ -218,7 +235,7 @@ router.route('/insertgame')
 
 
   router.route('/getgame')
-    .get((req, res)  => {
+    .get(authorization,(req, res)  => {
         getAllgame()
         .then(result => {
             console.log(result)
@@ -230,7 +247,7 @@ router.route('/insertgame')
     })
 
   router.route('/getgame/:genre')
-  .get((req, res) => {
+  .get(authorization,(req, res) => {
       const genre = req.params.genre
       getGame(genre)
       .then(result => {
@@ -255,7 +272,7 @@ router.route('/insertgame')
     })
 
     router.route('/getdevice/:type')
-  .get((req, res) => {
+  .get(authorization,(req, res) => {
       const type = req.params.type
       getDevice(type)
       .then(result => {
@@ -267,4 +284,20 @@ router.route('/insertgame')
         res.status(400).json('No '+ type)
       })
   })
+
+
+  router.route('/deletedevice/:id')
+  .delete(authorization,(req,res) => {
+      const id = req.params.id
+      deletedevicebyid(id)
+      .then(result =>{
+        console.log(result)
+        res.status(200).send(result)
+      })
+      .catch(err => {
+            console.log(err)
+            res.status(400).json('No Device '+ id)
+      })
+  })
+
 module.exports = router

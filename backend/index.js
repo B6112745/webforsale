@@ -42,9 +42,9 @@ expressApp.use((req, res, next) => {
 
 expressApp.use('/signup', require('./routes/signup'))
 expressApp.use('/login', require('./routes/signin'))
-expressApp.use('/product', require('./routes/products'))
-expressApp.use('/admin', require('./api/api'))
-expressApp.use('/history',require('./routes/history'))
+expressApp.use('/product', require('./api/product'))
+expressApp.use('/admin', require('./api/createadmin'))
+expressApp.use('/history',require('./api/history'))
 
 expressApp.listen(3000, function(){
     console.log('Listening on port 3000')
