@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service'
 import { DevicesService } from '../../services/devices.service'
-
+import { LocalStorageService } from 'angular-web-storage'
 @Component({
   selector: 'app-devices',
   templateUrl: './devices.component.html',
@@ -12,8 +12,8 @@ export class DevicesComponent implements OnInit {
   cart: DevicesService | any = []
 
   devices: any;
-
-  constructor(private ds : DevicesService, private cr : CartService) { 
+  token: any;
+  constructor(public local: LocalStorageService,private ds : DevicesService, private cr : CartService) { 
     this.cart = this.cr.getCart();
     this.onLoading();
   }
@@ -22,7 +22,8 @@ export class DevicesComponent implements OnInit {
 
   onLoading(){
     try {
-      this.ds.getDevice().subscribe(
+      this.token = this.local.get('user').token
+      this.ds.getDevice(this.token).subscribe(
         data => {
           this.devices = data;
         },err => {
