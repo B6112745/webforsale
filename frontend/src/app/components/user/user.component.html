@@ -3,7 +3,7 @@
     <ul class="sidebar-nav">
         <li class="sidebar-brand" class="grad2"><a href="#" class="text4">Profile</a>
         </li>
-        <li><a href="#">Purchase History </a>
+        <li><a href="#">History </a>
         </li>
         <li><a href="#">Sign Out</a>
         </li>
@@ -12,113 +12,76 @@
 
 <!--Main Navigation-->
 <header>
-    
+
     <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" >
         <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
     </video>
     <br><br>
-    <div class="container h-100" style="margin-left:4%" >
-        <div class="d-flex h-100 align-items-top">            
-            <div class="row" >
-                <div class="col-md-12" class="grad">
-                    <h2 class="text">&nbsp;Profile</h2>
-                    <div class="table-responsive-md">
-                        <table class="table table-striped table-inverse">
-                            <thead class="thead-inverse" class="text2" >
-                                <tr>
-                                    <th>หมามี 4 ขา</th>
-                                    <th>12344444</th>
-                                    <th>N/A</th>
-                                    <th>N/A</th>
-                                    <th>N/A</th>
-                                    <th>N/A</th>
-                                    <th>N/A</th>
-                                    <th>N/A</th>
-                                </tr>
-                            </thead>                           
-                        </table>
-                        <form [formGroup]="gameForm">
-                            <div class="card-body">                            
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        Game Genre:
+    <div class="container h-100" style="margin-left:4%">
+        <div class="d-flex h-100">
+            <div class="row">
+                <div class="col-md-12" class="grad" >
+                    <h2 class="text" style="margin-top:2%" >&nbsp;&nbsp;&nbsp;Profile</h2>                   
+                        <form [formGroup]="gameForm" style="margin-left:4%">
+                            <div class="card-body">
+                                <div class="row" class="grad3">
+                                    <div class="col-md-3" >
+                                            <a class="text4" >Username</a>                               
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-7">
                                         <div class="form-group">
-                                            <select class="form-control" formControlName="genre">
-                                                <option value=""></option>
-                                                <option *ngFor="let item of gameType" [value]="item">
-                                                    {{item}}</option>
-                                            </select>
+                                            <card type="text" class="form-control" formControlName='description' >
+                                                สวะ</card>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        Game Description:
+                                <div class="row" class="grad3">
+                                    <div class="col-md-3" >
+                                            <a class="text4" >Email</a>                               
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-7">
                                         <div class="form-group">
-                                            <input type="text" class="form-control"
-                                                formControlName='description'>
+                                            <card type="text" class="form-control" formControlName='description'>
+                                                สวะ</card>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        Game Publisher:
+                                <div class="row" class="grad3">
+                                    <div class="col-md-3" >
+                                            <a class="text4" >Phone</a>                               
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-7">
                                         <div class="form-group">
-                                            <input type="text" class="form-control"
-                                                formControlName='publisher'>
+                                            <card type="text" class="form-control" formControlName='description'>
+                                                สวะ</card>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        Price:
-                                    </div>
-                                    <div class="col-md-9">
+                                <div class="row" class="grad3">
+                                    <div class="col-md-3" >
+                                            <a class="text4" >Gender</a>                               
+                                    </div> 
+                                    <div class="col-md-7">
                                         <div class="form-group">
-                                            <input type="number" class="form-control"
-                                                formControlName='price'>
+                                            <card type="text" class="form-control" formControlName='description'>
+                                                สวะ</card>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        Image:
-                                    </div>
-                                    <div class="col-md-9">
+                                <div class="row" class="grad3">
+                                    <div class="col-md-3" >
+                                            <a class="text4" >Birth</a>                               
+                                    </div>                                
+                                    <div class="col-md-7">
                                         <div class="form-group">
-                                            <input type="file" class="form-control-file"
-                                                formControlName='file' (change)="onChangeImg($event)">
+                                            <card type="text" class="form-control" formControlName='description'>
+                                                สวะ</card>
+                                                
                                         </div>
                                     </div>
-                                </div>
-    
-                                <div class="row">
-                                    <div class="col-md-3">
-    
-                                    </div>
-                                    <div class="col-md-9">
-                                        <img *ngIf="previewLoaded" class="img-thumbnail"
-                                            [src]="this.gameForm.value.img" style="height:150px;">
-                                    </div>
-                                </div>
-    
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button type="button" class="btn btn-primary"
-                                            (click)="addGame()">Add</button>&nbsp;
-                                        <button type="reset" class="btn btn-danger"
-                                            (click)="resetFrom()">Reset</button>
-                                    </div>
-                                </div>
+                                </div>     
                             </div>
-                        </form>                        
-                    </div>
+                        </form>                    
                 </div>
             </div>
         </div>
@@ -128,8 +91,8 @@
     <div style="margin-left:38%" class="text3"><br><a>DevTeam</a><br></div>
     <div style="margin-left:4%">
         <a>B6114121 Piyapong Visitsin |BramZa007| &nbsp;&nbsp;&nbsp;</a>
-        <a>B6112745 Chalintra Yotasi  |JinaZa007| &nbsp;&nbsp;&nbsp;</a>
-        <a>B6107826 Makawan Thojan  |AnfaZa007| &nbsp;&nbsp;&nbsp;</a>
-        <a>B6117603 Teerawat Uasriwong   |TorguZa007| &nbsp;&nbsp;&nbsp;</a>
+        <a>B6112745 Chalintra Yotasi |JinaZa007| &nbsp;&nbsp;&nbsp;</a>
+        <a>B6107826 Makawan Thojan |AnfaZa007| &nbsp;&nbsp;&nbsp;</a>
+        <a>B6117603 Teerawat Uasriwong |TorguZa007| &nbsp;&nbsp;&nbsp;</a>
     </div>
 </div>

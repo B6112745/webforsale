@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GamesService } from '../../services/games.service'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-updategames',
@@ -10,12 +11,15 @@ export class UpdategamesComponent implements OnInit {
 
   games: any;
 
-  constructor(private gs : GamesService) {
+  constructor(private gs : GamesService, private httpClient:HttpClient) {
     this.onLoading();
    }
 
-  ngOnInit(): void {
+  ngOnInit() {this.httpClient.delete('http://localhost:3000/product/getgame')
+  .subscribe(() => 'Delete successful');
   }
+
+  
 
   onLoading(){
     try {
