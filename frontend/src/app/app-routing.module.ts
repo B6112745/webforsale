@@ -9,6 +9,7 @@ import { AdddevicesComponent } from './components/adddevices/adddevices.componen
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { HistoryComponent } from './components/history/history.component';
+import { AdminSignupComponent } from './components/adminsignup/adminsignup.component';
 
 const routes: Routes = [
   {path: 'header', component: HeaderComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent },
   {path: 'login', component: LoginComponent},
   {path: 'history', component: HistoryComponent},
+  {path: 'adminsignup',component:AdminSignupComponent},
   {path:'',
   redirectTo: 'login',
   pathMatch: 'full'

@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  
 
   loginForm = new FormGroup({
     username: new FormControl(''),
@@ -22,11 +22,15 @@ export class LoginComponent implements OnInit {
   }
 
   signin(){
-    console.log(this.loginForm.value);
+    
+
+    //console.log(this.loginForm.value);
     this.auth.signIn(this.loginForm.value).subscribe(
       data => {
-        if(data.status ==true){
+        if(data.status == true && data.result.role === "user"){
           this.router.navigate(['/games'])
+        }else if (data.status == true && data.result.role === "admin"){
+          this.router.navigate(['/addgames'])
         }else{
           alert('Usernaem or password is incorrect!');
         }

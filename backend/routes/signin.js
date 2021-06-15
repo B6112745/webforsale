@@ -47,7 +47,7 @@ const findUser = (username) => {
                 reject(new Error('Cannot find username!'));
             }else{
                 if(data){
-                    resolve({id:data._id, username: data.username, password: data.password})
+                    resolve({id:data._id, username: data.username, password: data.password, role: data.role})
                 }else{
                     reject(new Error('Cannot find username!'));
                 }
@@ -67,7 +67,7 @@ router.route('/signin')
         try{
             const result = await findUser(payload.username);
             const loginStatus = await compareHash(payload.password, result.password);
-            console.log({show:result})
+            console.log(result)
             console.log(loginStatus)
             const status = loginStatus.status;
            
