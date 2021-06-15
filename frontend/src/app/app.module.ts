@@ -14,6 +14,8 @@ import { DevicesComponent } from './components/devices/devices.component';
 import { AdddevicesComponent } from './components/adddevices/adddevices.component';
 import { UpdatedevicesComponent } from './components/updatedevices/updatedevices.component';
 import { UpdategamesComponent } from './components/updategames/updategames.component';
+import { HistoryComponent } from './components/history/history.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { UpdategamesComponent } from './components/updategames/updategames.compo
     DevicesComponent,
     AdddevicesComponent,
     UpdatedevicesComponent,
-    UpdategamesComponent
+    UpdategamesComponent,
+    HistoryComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

@@ -126,84 +126,8 @@
     padding: 15px;
   }  
   }
-  /* ------------------------------------------------------- */
-  header {
-    position: relative;
-    background-color: black;
-    height: 75vh;
-    min-height: 25rem;
-    width: 100%;
-    overflow: hidden;
+
+  .grad2 {
+    background-image: linear-gradient(to left, rgb(169, 222, 243), rgba(2, 36, 75, 0.733));
+    width:800px;
   }
-  
-  header video {
-    position: absolute;
-    top: 50%;
-    left: 40%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: 0;
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-  }
-  
-  header .container {
-    position: relative;
-    z-index: 2;
-  }
-  
- 
-  
-  /* ------------------------------------------------------- */
-
-
-  .center_div {
-    margin:auto;
-    width:50%;
-    height:70%;
-}
-
-.text{
-  font-size: 40px;
-  color: rgb(251, 252, 248);
-  text-shadow: 5px 3px 5px rgba(176, 242, 247, 0.514);
-}
-
-.text2{
-  font-size: 25px;
-  color: rgb(251, 252, 248);
-  text-shadow: 5px 3px 5px rgba(176, 242, 247, 0.514);
-}
-
-.text3{
-  font-size: 25px;
-  color: rgb(251, 252, 248);
-  text-shadow: 4px 4px 6px rgb(252, 252, 252);
-}
-
-.text4{
-  font-size: 18px;
-  color: rgb(255, 255, 255);
-  text-shadow: 2px 2px 6px rgba(252, 252, 252, 0.555);
-}
-
-.grad {
-  background-image: linear-gradient(to top, rgba(118, 199, 231, 0.075), rgba(2, 48, 75, 0.733));
-  width:800px;
-}
-
-.grad2 {
-  background-image: linear-gradient(to left, rgb(169, 222, 243), rgba(2, 36, 75, 0.733));
-  width:800px;
-}
-
-.grad3 {
-  background-image: linear-gradient(to top, rgba(118, 199, 231, 0.075), rgba(2, 48, 75, 0.733));
-  width:749px;
-}
-
-
