@@ -11,66 +11,13 @@
             <div class="row">
                 <div class="col-md-12" class="grad" >
                     <h2 class="text" style="margin-top:2%" >&nbsp;&nbsp;&nbsp;Profile</h2>                   
-                        <form [formGroup]="gameForm" style="margin-left:4%">
-                            <div class="card-body">
-                                <div class="row" class="grad3">
-                                    <div class="col-md-3" >
-                                            <a class="text4" >Username</a>                               
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <card type="text" class="form-control" formControlName='description' >
-                                                สวะ</card>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" class="grad3">
-                                    <div class="col-md-3" >
-                                            <a class="text4" >Email</a>                               
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <card type="text" class="form-control" formControlName='description'>
-                                                สวะ</card>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" class="grad3">
-                                    <div class="col-md-3" >
-                                            <a class="text4" >Phone</a>                               
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <card type="text" class="form-control" formControlName='description'>
-                                                สวะ</card>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" class="grad3">
-                                    <div class="col-md-3" >
-                                            <a class="text4" >Gender</a>                               
-                                    </div> 
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <card type="text" class="form-control" formControlName='description'>
-                                                สวะ</card>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" class="grad3">
-                                    <div class="col-md-3" >
-                                            <a class="text4" >Birth</a>                               
-                                    </div>                                
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <card type="text" class="form-control" formControlName='description'>
-                                                สวะ</card>
-                                                
-                                        </div>
-                                    </div>
-                                </div>     
-                            </div>
-                        </form>                    
+                            <tr *ngFor="let item of udata; index as i">
+                                <td class="text2">{{item.username}}</td>
+                                <td class="text2">{{item.email}}</td>
+                                <td class="text2">{{item.phone}}</td>
+                                <td class="text2">{{item.brith}}</td>
+                                <td class="text2">{{item.gender}}</td>
+                            </tr>                    
                 </div>
             </div>
         </div>
@@ -82,6 +29,6 @@
         <a>B6114121 Piyapong Visitsin |BramZa007| &nbsp;&nbsp;&nbsp;</a>
         <a>B6112745 Chalintra Yotasi |JinaZa007| &nbsp;&nbsp;&nbsp;</a>
         <a>B6107826 Makawan Thojan |AnfaZa007| &nbsp;&nbsp;&nbsp;</a>
-        <a>B6117603 Teerawat Uasriwong |TorguZa007| &nbsp;&nbsp;&nbsp;</a>
+        <a>B6117603 Teerawat Uasriwong |TorguZaa| &nbsp;&nbsp;&nbsp;</a>
     </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GamesService } from '../../services/games.service'
 import { CartService } from '../../services/cart.service'
 import { LocalStorageService } from 'angular-web-storage'
+
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
