@@ -1,23 +1,26 @@
 var expressFunction = require('express');
 const router = expressFunction.Router();
+const authorization = require('../config/authorize');
 const mongoose = require('mongoose');
 
 
 var Schema = require("mongoose").Schema;
+
+
 const historySchema = Schema({
-    id: {type: mongoose.Schema.Types.ObjectId},
-    owner: {type: mongoose.Schema.Types.ObjectId,ref:'user'},
-    game: {type: mongoose.Schema.Types.ObjectId,ref:'games'},
-    device: {type: mongoose.Schema.Types.ObjectId,ref:'devices'},
+    customerid: {type: mongoose.Schema.Types.String,ref:'user'},
+    games: [{type: mongoose.Schema.Types.String,ref:'games'}],
+    devices: [{type: mongoose.Schema.Types.String,ref:'devices'}]
 },  {
-    collection: 'history'
+    collection: 'histories',
+    timestamps: true,
 });
 
 let History
 try {
-    History = mongoose.model('historys')
+    History = mongoose.model('histories')
 }   catch(error){
-    History = mongoose.model('historys', historySchema);
+    History = mongoose.model('histories', historySchema);
 }
 
 const getHistory = () => {
@@ -38,15 +41,16 @@ const getHistory = () => {
 }
 const addhistory = (data) => {
     return new Promise ((resolve, reject) => {
+        console.log(data)
         var new_history = new History({
-            _id: mongoose.Types.ObjectId(),
-            owner: data.owner,
-            game: data.game,
-            device: data.device
+            customerid: data.customerid,
+            games: data.games,
+            devices: data.devices
+           
         });
         new_history.save((err, data) => {
             if(err){
-                reject(new Error('Cannot insert user to DB!'));
+                reject(new Error(err));
             }else{
                 resolve({massage: 'Insert successfully'});
             }
@@ -54,12 +58,13 @@ const addhistory = (data) => {
     });
 }
 router.route('/addhistory')
-.post((req, res) => {
+.post(authorization,(req, res) => {
+    console.log(req.body.games)
     const payload = {
-        _id: mongoose.Types.ObjectId(),
-         owner: req.body.owner,
-         game: req.body.game,
-         device: req.body.device
+        customerid: req.body.customerid,
+        games: req.body.games,
+        devices: req.body.devices
+        
     }
         addhistory(payload)
             .then(result => {

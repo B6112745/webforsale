@@ -1,4 +1,5 @@
-var expressFunction = require('express');
+const expressFunction = require('express');
+const authorization = require('../config/authorize');
 const router = expressFunction.Router();
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
@@ -53,37 +54,31 @@ const insertUser = (dataUser) => {
 
 
 
+router.route('/addadmins').post(authorization,(req, res) =>{
+    makeHash(req.body.password)
+    .then(hashText => {
+        const payload = {
+            username: req.body.username,
+            password: hashText,
+            email: req.body.email,
+            gender: req.body.gender,
+            birth: req.body.birth,
+            phone: req.body.phone,
+            role: "admin"
+        }
+        console.log(payload);
+        insertUser(payload)
+            .then(result => {
+                console.log(result);
+                res.status(200).json(result);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    })
+    .catch(err => {
+       
+    })
+})
 
-
-
-router.route('/adduser')
-    .post((req, res) => {
-        makeHash(req.body.password)
-        .then(hashText => {
-            const payload = {
-                username: req.body.username,
-                password: hashText,
-                email: req.body.email,
-                gender: req.body.gender,
-                birth: req.body.birth,
-                phone: req.body.phone,
-                role: "user"
-            }
-            console.log(payload);
-            insertUser(payload)
-                .then(result => {
-                    console.log(result);
-                    res.status(200).json(result);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        })
-        .catch(err => {
-        
-        })
-    });
-
-  
-    
 module.exports = router
