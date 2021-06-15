@@ -6,8 +6,9 @@ import { AddgamesComponent } from './components/addgames/addgames.component'
 import { UserComponent } from './components/user/user.component';
 import { DevicesComponent } from './components/devices/devices.component';
 import { AdddevicesComponent } from './components/adddevices/adddevices.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
 import { HistoryComponent } from './components/history/history.component';
-
 
 const routes: Routes = [
   {path: 'header', component: HeaderComponent },
@@ -16,9 +17,11 @@ const routes: Routes = [
   {path: 'games', component: GamesComponent },
   {path: 'devices', component: DevicesComponent },
   {path: 'user', component: UserComponent },
-  {path: 'history', component: HistoryComponent },
+  {path: 'signup', component: SignupComponent },
+  {path: 'login', component: LoginComponent},
+  {path: 'history', component: HistoryComponent},
   {path:'',
-  redirectTo: 'games',
+  redirectTo: 'login',
   pathMatch: 'full'
 }
 ];

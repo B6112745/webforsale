@@ -67,7 +67,7 @@ router.route('/signin')
         try{
             const result = await findUser(payload.username);
             const loginStatus = await compareHash(payload.password, result.password);
-            console.log(result)
+            console.log({show:result})
             console.log(loginStatus)
             const status = loginStatus.status;
            
