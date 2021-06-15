@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DevicesService } from '../../services/devices.service'
-
+import { LocalStorageService } from 'angular-web-storage'
 @Component({
   selector: 'app-adddevices',
   templateUrl: './adddevices.component.html',
@@ -28,13 +28,14 @@ export class AdddevicesComponent implements OnInit {
   get quantity() {return this.deviceForm.get('quantity') as FormArray;}
   get price() {return this.deviceForm.get('price') as FormArray;}
 
-  constructor(private ds : DevicesService) { }
-
+  constructor(private ds : DevicesService,public local: LocalStorageService) { }
+  token: any
   ngOnInit(): void {
   }
 
   addDevice(){
-    this.ds.addDevice(this.deviceForm.value).subscribe(
+    this.token = this.local.get('user').token
+    this.ds.addDevice(this.deviceForm.value,this.token).subscribe(
       data => {
         console.log(data)
         alert('Device added successfully');

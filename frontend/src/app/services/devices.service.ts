@@ -11,8 +11,9 @@ export class DevicesService {
 
   constructor(private http: HttpClient) { }
 
-  addDevice(device : any){
-    return this.http.post<any>('http://localhost:3000/product/insertdevice', device)
+  addDevice(device : any,token: any){
+    const headers = {'Authorization': token}
+    return this.http.post<any>('http://localhost:3000/product/insertdevice', device,{headers})
     .pipe(map(data => {
       return data;
     }));
