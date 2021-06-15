@@ -48,7 +48,7 @@ export class UpdategamesComponent implements OnInit {
     }catch (error){
       console.log(error)
     }
-    // window.location.reload();
+    window.location.reload();
   }
 
 }
