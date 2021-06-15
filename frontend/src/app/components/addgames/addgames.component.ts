@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { GamesService } from '../../services/games.service'
-
-
+import { LocalStorageService } from 'angular-web-storage'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-addgames',
   templateUrl: './addgames.component.html',
@@ -28,18 +28,20 @@ export class AddgamesComponent implements OnInit {
   get price() {return this.gameForm.get('price') as FormArray;}
 
   previewLoaded: boolean = false;
-
-  constructor(private gs: GamesService) { }
+  token: any
+  constructor(public local: LocalStorageService,private gs: GamesService,private router: Router) { }
 
   ngOnInit(): void {
   }
-
+  
   addGame(){
-    this.gs.addGame(this.gameForm.value).subscribe(
+    this.token = this.local.get('user').token
+    this.gs.addGame(this.gameForm.value,this.token).subscribe(
       data => {
         console.log(data)
         alert('Game added successfully');
         this.gameForm.reset();
+        
       },
       err => {
         console.log(err);

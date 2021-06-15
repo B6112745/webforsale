@@ -11,8 +11,9 @@ export class GamesService {
 
   constructor(private http: HttpClient) { }
 
-  addGame(game : any){
-    return this.http.post<any>('http://localhost:3000/product/insertgame', game)
+  addGame(game : any,token: any){
+    const headers = {'Authorization': token}
+    return this.http.post<any>('http://localhost:3000/product/insertgame', game,{headers})
     .pipe(map(data => {
       return data;
     }));
