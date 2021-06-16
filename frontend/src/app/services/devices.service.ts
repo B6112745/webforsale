@@ -40,4 +40,15 @@ export class DevicesService {
   getSomeDevices(id:number){
     return this.devices[id]
   }
+  getdevicebytype(token: any, type: any){
+    const headers = {'Authorization': token}
+    return this.http.get<any>('http://localhost:3000/product/getdevice/'+type,{headers})
+    .pipe(map(data => {
+      if (data) {
+      
+        console.log(data);
+      }
+      return data;
+    }));
+  }
 }

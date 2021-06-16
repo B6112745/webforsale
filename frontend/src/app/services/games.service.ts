@@ -41,9 +41,9 @@ export class GamesService {
   getSomeDevices(id:number){
     return this.games[id]
   }
-  getgamebyid(token: any, productid: any){
+  getgamebygenre(token: any, genre: any){
     const headers = {'Authorization': token}
-    return this.http.get<any>('http://localhost:3000/product/getgamebyid/'+productid,{headers})
+    return this.http.get<any>('http://localhost:3000/product/getgame/'+genre,{headers})
     .pipe(map(data => {
       if (data) {
       
@@ -52,4 +52,5 @@ export class GamesService {
       return data;
     }));
   }
+  
 }
