@@ -23,5 +23,17 @@ export class UserService {
       return this.udata;
     }));
   }
+  updateUser(token: any, user:any,userid: any){
+    console.log("555")
+    const headers = {'Authorization': token}
+    return this.http.put<any>('http://localhost:3000/user/updateuser/'+userid,user,{headers})
+    .pipe(map(data => {
+      if (data) {
+        
+        console.log(this.udata);
+      }
+      return data;
+    }));
+  }
 
 }

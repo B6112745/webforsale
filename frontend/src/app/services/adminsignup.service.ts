@@ -9,11 +9,13 @@ import { map } from 'rxjs/operators';
 export class AdminSignupService {
 
   users: any;
-
+  token: any
   constructor(private http: HttpClient, public local:LocalStorageService) { }
 
   signup(user : any){
-    return this.http.post<any>('http://localhost:3000/admin/addadmins', user)
+    this.token = this.local.get('user').token
+    const headers = {'Authorization': this.token}
+    return this.http.post<any>('http://localhost:3000/admin/addadmins', user,{headers})
     .pipe(map(data => {
       return data;
     }));

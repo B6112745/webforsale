@@ -55,7 +55,7 @@ export class GamesComponent implements OnInit {
       this.gs.getgamebygenre(this.token,this.genre).subscribe(
         data => {
           this.games = data;
-          this.local.remove('genre')
+          this.local.set('genre',{genre: null})
         },err => {
           console.log(err)
         });

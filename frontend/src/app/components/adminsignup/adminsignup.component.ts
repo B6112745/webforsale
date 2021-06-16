@@ -39,6 +39,7 @@ export class AdminSignupComponent implements OnInit {
           alert('Can not signup!');
         }else{
           alert('Signup successfuly!!Xd');
+          this.back()
         }
       },
       err =>{

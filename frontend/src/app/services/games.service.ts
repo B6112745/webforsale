@@ -53,5 +53,15 @@ export class GamesService {
       return data;
     }));
   }
-  
+  updategame(token: any,game: any){
+    const headers = {'Authorization': token}
+    return this.http.put<any>('http://localhost:3000/product/updategame',game,{headers})
+    .pipe(map(data => {
+      if (data) {
+      
+        console.log(data);
+      }
+      return data;
+    }));
+  }
 }

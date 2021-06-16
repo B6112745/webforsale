@@ -14,8 +14,8 @@ const userSchema = Schema({
     password: String,
     email: String,
     gender: String,
-    birth: Date,
-    phone: Number,
+    birth: String,
+    phone: String,
     role: String
 },  {
     collection: 'users'

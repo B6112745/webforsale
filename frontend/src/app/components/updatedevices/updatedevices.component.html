@@ -33,7 +33,7 @@
                             </a>
                             <button style="margin-left:10%" type="button" 
                             class="btn btn-outline-danger btn-xs" 
-                            (click)="deletedeviceid(item.deviceid)"
+                            (click)="updatedevices()"
                             data-toggle="modal" data-target="#myEditDevice">
                             Edit</button>
                         </td>
@@ -55,18 +55,8 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-                <form [formGroup]="gameForm" style="margin-left:4%">
-                    <div class="card-body" *ngFor="let item of devices; index as i">
-                        <div class="row" >
-                            <div class="col-md-2" >
-                                    <a class="text6" >Image</a>                               
-                            </div>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <input type="file" class="form-control-file" formControlName='file' (change)="onChangeImg($event)">                           
-                                </div>
-                            </div>
-                        </div>                       
+                <form [formGroup]="deviceForm" style="margin-left:4%">
+                    <div class="card-body" *ngFor="let item of devices; index as i">                    
                         <div class="row" >
                             <div class="col-md-2" >
                                     <a class="text6" >ID</a>                               
@@ -129,7 +119,7 @@
                         </div>
                     </div>
                 </form>               
-                <a href="" class="btn btn-outline-secondary pull-right" >
+                <a class="btn btn-outline-secondary pull-right" (click)="updatedevice()">
                   Update Device
                 </a>
                 

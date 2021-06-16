@@ -4,13 +4,14 @@ import { CartService } from '../../services/cart.service'
 import { LocalStorageService } from 'angular-web-storage';
 import { GamesService} from '../../services/games.service'
 import { HistoryService } from 'src/app/services/history.service';
+import { FormControl} from '@angular/forms'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  
+  quantity = new FormControl('')
   cart: DevicesService | any = []
   devices : any;
   games : any;
@@ -64,7 +65,25 @@ export class HeaderComponent implements OnInit {
       this.token = this.local.get('user').token
       this.ds.deletedeviceid(this.token,customerid,deviceid).subscribe(
         data => {
-          this.devices = data;
+          this.cart = this.cr.getCarts();
+        },err => {
+          console.log(err)
+        });
+    }catch (error){
+      console.log(error)
+    }
+    window.location.reload();
+  }
+  deletegameid(gameid : any,customerid:any){
+    console.log('gameid')
+    console.log(gameid)
+    console.log('user')
+    console.log(customerid)
+    try {
+      this.token = this.local.get('user').token
+      this.ds.deletedeviceid(this.token,customerid,gameid).subscribe(
+        data => {
+          this.cart = this.cr.getCarts();
         },err => {
           console.log(err)
         });
@@ -90,7 +109,28 @@ export class HeaderComponent implements OnInit {
         console.log(data)
       }
     )
+    this.cr.deletecart(this.token,this.userid).subscribe(
+      data => {
+        console.log(data)
+      }
+    )
     window.location.reload();
   }
 
+  updatecart(product: any){
+    this.token = this.local.get('user').token
+      try {
+        this.token = this.local.get('user').token
+        this.cr.updatecart(this.token,product,this.quantity.value).subscribe(
+          data => {
+           
+          },err => {
+            console.log(err)
+          });
+      }catch (error){
+        console.log(error)
+      }
+      window.location.reload();
+
+  }
 }
