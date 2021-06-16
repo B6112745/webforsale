@@ -2,7 +2,6 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { DevicesService } from '../../services/devices.service'
 import { CartService } from '../../services/cart.service'
 import { LocalStorageService } from 'angular-web-storage';
-import { GamesService} from '../../services/games.service'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,11 +10,12 @@ import { GamesService} from '../../services/games.service'
 export class HeaderComponent implements OnInit {
   
   cart: DevicesService | any = []
+  devices : any;
 
   sumprice = 0
   userid: any
   token: any
-  constructor(public local: LocalStorageService,private cr : CartService) { 
+  constructor(public local: LocalStorageService,private cr : CartService, private ds : DevicesService) { 
     this.userid = this.local.get('user').result.id
     this.token = this.local.get('user').token
    this.cr.getcart(this.userid,this.token).subscribe(
@@ -52,4 +52,22 @@ export class HeaderComponent implements OnInit {
     this.local.set('genre',{genre:genre})
   }
 
+  deletedeviceid(deviceid : any,customerid:any){
+    console.log('deviceid')
+    console.log(deviceid)
+    console.log('user')
+    console.log(customerid)
+    try {
+      this.token = this.local.get('user').token
+      this.ds.deletedeviceid(this.token,customerid,deviceid).subscribe(
+        data => {
+          this.devices = data;
+        },err => {
+          console.log(err)
+        });
+    }catch (error){
+      console.log(error)
+    }
+    window.location.reload();
+  }
 }

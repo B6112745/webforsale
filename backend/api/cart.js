@@ -77,10 +77,11 @@ const getCart = (customerid) =>{
 
 const deletefromcart = (customerid,productid) => {
   return new Promise((resolve, reject) => {
-    console.log(productid[0])
-    if(productid[0] === 'D'){
-        Cart.deleteOne({customerid:customerid,deviceid:productid},(err, data) => {
-            if(data.length > 0){
+      console.log('delete')
+    console.log(productid)
+    if(productid[0] === 'D'){        
+        Cart.deleteOne({customerid:customerid,deviceid:productid},(err, data) => {            
+            if(data.deletedCount != 0){
                 resolve(data)
             }else{
                 reject(new Error('Cannot Delete'))
@@ -88,7 +89,7 @@ const deletefromcart = (customerid,productid) => {
         })
     }else{
         Cart.deleteOne({customerid:customerid,gameid:productid},(err, data) => {
-            if(data.length > 0){
+            if(data.deletedCount != 0){
                 resolve(data)
             }else{
                 reject(new Error('Cannot Delete'))
@@ -158,6 +159,10 @@ router.route('/getcart/:customerid').get(authorization,(req, res) => {
     })
 })
 router.route('/deletefromcart/:customerid/:productid').delete(authorization,(req, res) => {
+    console.log('product')
+    console.log(req.params.productid)
+    console.log('hello')
+    console.log(req.params.customerid)
     const customerid = req.params.customerid
     const productid = req.params.productid
     deletefromcart(customerid,productid)
