@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
           alert('Can not signup!');
         }else{
           alert('Can signup!!Xd');
-          this.router.navigate(['/login'])
+
         }
       },
       err =>{

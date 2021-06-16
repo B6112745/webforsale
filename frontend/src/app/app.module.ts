@@ -21,6 +21,8 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AdminSignupComponent } from './components/adminsignup/adminsignup.component';
 import { AdminbarComponent } from './components/adminbar/adminbar.component';
+import { NgstyleComponent } from './components/ngstyle/ngstyle.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AdminbarComponent } from './components/adminbar/adminbar.component';
     LoginComponent,
     SignupComponent,
     AdminSignupComponent,
-    AdminbarComponent
+    AdminbarComponent,
+    NgstyleComponent
+ 
   ],
   imports: [
     BrowserModule,
