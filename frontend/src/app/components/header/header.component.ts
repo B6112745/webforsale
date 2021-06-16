@@ -90,7 +90,7 @@ export class HeaderComponent implements OnInit {
         console.log(data)
       }
     )
-    //window.location.reload();
+    window.location.reload();
   }
 
 }
