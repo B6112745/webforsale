@@ -105,6 +105,7 @@
             <div class="modal-body">
                 <form [formGroup]="gameForm" style="margin-left:4%">
                     <div class="card-body" *ngFor="let item of userid; index as i">
+                        <td width="300"><img [src]="item.img" style="width: 300px"></td>
                         <div class="row" >
                             <div class="col-md-2" >
                                     <a class="text6" >Username</a>                               
@@ -121,7 +122,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" formControlName='username' value="{{item.email}}">                                
+                                    <input type="text" class="form-control" formControlName='email' value="{{item.email}}">                                
                                 </div>
                             </div>
                         </div>
@@ -131,7 +132,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" formControlName='username' value="{{item.phone}}">
+                                    <input type="text" class="form-control" formControlName='phone' value="{{item.phone}}">
                                 </div>
                             </div>
                         </div>
@@ -141,7 +142,7 @@
                             </div> 
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" formControlName='username' value="{{item.gender}}">
+                                    <input type="text" class="form-control" formControlName='gender' value="{{item.gender}}">
                                 </div>
                             </div>
                         </div>
@@ -151,7 +152,7 @@
                             </div>                                
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" formControlName='username' value="{{item.birth}}">
+                                    <input type="text" class="form-control" formControlName='birth' value="{{item.birth}}">
                                 </div>
                             </div>
                         </div>     
