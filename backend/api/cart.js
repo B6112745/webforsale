@@ -75,6 +75,20 @@ const getCart = (customerid) =>{
     })
 }
 
+const deleteallcart = (customerid) => {
+    return new Promise((resolve, reject) => {
+        console.log('delete')      
+          Cart.deleteMany({customerid:customerid},(err, data) => {            
+              if(data.deletedCount != 0){
+                  resolve(data)
+              }else{
+                  reject(new Error('Cannot Delete'))
+              }
+          })
+      
+    })
+  }
+
 const deletefromcart = (customerid,productid) => {
   return new Promise((resolve, reject) => {
       console.log('delete')
@@ -166,6 +180,17 @@ router.route('/deletefromcart/:customerid/:productid').delete(authorization,(req
     const customerid = req.params.customerid
     const productid = req.params.productid
     deletefromcart(customerid,productid)
+    .then(result => {
+        res.status(200).send(result)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
+router.route('/deleteallcart/:customerid').delete((req, res) => {
+    const customerid = req.params.customerid
+    console.log(customerid)
+    deleteallcart(customerid)
     .then(result => {
         res.status(200).send(result)
     })

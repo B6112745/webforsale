@@ -16,6 +16,17 @@ export class CartService {
   constructor(private de : DevicesService,private ge : GamesService,private http: HttpClient) {
   
    }
+  //  clear(uid:any){
+  //    console.log(uid)
+  //   return this.http.delete<any>('http://localhost:3000/carts/deleteallcart/'+uid)
+  //   .pipe(map(data => {
+  //     if (data) {
+  //       //this.devices = data;
+  //       console.log('this.devices');
+  //     }
+  //     return console.log('this.devices');
+  //   }));
+  //  }
   getcart(userid: any,token: any){
      const headers = {'Authorization':token}
     return this.http.get<any>('http://localhost:3000/carts/getcart/'+userid,{headers})
@@ -23,7 +34,7 @@ export class CartService {
       if (data) {
         this.cart = data
         this.counter = data.length
-      
+
       }
       return this.cart;
     }));
@@ -48,6 +59,7 @@ export class CartService {
       return this.cart;
     }));
   }
+ 
 
   getCounter(){
     return this.counter;

@@ -123,15 +123,16 @@
                             </div>
                             
                         </div>
+                        
                       </tr>
                   </tbody>
               </table>
               <p >
                   <b>Subtotal: </b> {{getSumPrice()}}
               </p>
-              <a href="" class="btn btn-outline-secondary pull-right" >
-                Update shopping cart
-              </a>
+              <button class="btn btn-outline-secondary pull-right" (click)="Submit()">
+                Submit
+              </button>
               
           </div>
           <!-- Modal footer -->

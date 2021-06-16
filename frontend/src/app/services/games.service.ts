@@ -32,6 +32,7 @@ export class GamesService {
   }
 
   deleteGame(token: any,id :any){
+    
     console.log(id)
     const headers = {'Authorization': token}
     return this.http.delete<any>('http://localhost:3000/product/deletegame/'+id,{headers})

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup,Validators,FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { LocalStorageService } from 'angular-web-storage'
@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
 
 
   loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    username: new FormControl('',Validators.required),
+    password: new FormControl('',Validators.required),
   })
 
   constructor(public local: LocalStorageService,private router: Router, private auth: LoginService) { }
@@ -70,6 +70,12 @@ export class LoginComponent implements OnInit {
 
   receiveData($event: any) {
     this.parentColorProperty = $event;
+  }
+  get username(){
+    return this.loginForm.get('username') as FormArray;
+  }
+  get password(){
+    return this.loginForm.get('password') as FormArray;
   }
 
 }

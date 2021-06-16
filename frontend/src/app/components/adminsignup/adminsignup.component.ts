@@ -55,9 +55,18 @@ export class AdminSignupComponent implements OnInit {
   get username(){
     return this.signupForm.get('username') as FormArray;
   }
+  get password(){
+    return this.signupForm.get('password') as FormArray;
+  }
 
   get phone(){
     return this.signupForm.get('phone') as FormArray;
+  }
+  get gender(){
+    return this.signupForm.get('gender') as FormArray;
+  }
+  get dt(){
+    return this.signupForm.get('dt') as FormArray;
   }
 
   back(){

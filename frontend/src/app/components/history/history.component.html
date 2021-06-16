@@ -1,7 +1,34 @@
+<app-header></app-header>
 <app-sidebar></app-sidebar>
 <header>
 
     <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" >
-        <source src="https://video.fnak3-1.fna.fbcdn.net/v/t42.1790-2/189319829_804313903617813_5424771262185742495_n.mp4?_nc_cat=107&ccb=1-3&_nc_sid=985c63&efg=eyJ2ZW5jb2RlX3RhZyI6InN2ZV9zZCJ9&_nc_eui2=AeGuLQs0m0S3wWeCo5LfUPL9eFPAKtuUBLF4U8Aq25QEsfYl3_QRlnplmocK6G8pOyBqJgPISf9FpygbQ3V6txFO&_nc_ohc=i49XhQrW0VQAX9TUVk5&_nc_rml=0&_nc_ht=video.fnak3-1.fna&oh=bc57cfb73d6bc8b7e456b0d02da47b34&oe=60C8BD21" type="video/mp4">
+        <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
     </video>
+    <br><br>
+    <div class="container h-100" style="margin-left:4%">
+        <div class="d-flex h-100" class="col-md-12">
+            <div class="table-responsive-md">
+                <table class="table table-striped table-inverse">
+                    <thead class="thead-inverse" style="background-color: #86b2cf21;" class="text">
+                        <tr>
+                            <th>ID</th>
+                            <th>product</th>
+                            <th>Quantity</th>                                
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <tr *ngFor="let item of product; index as i"> 
+                            <td class="text">{{item.device}}{{item.game}}</td>                              
+                            <td class="text">{{item.name}}</td>
+                            <td class="text">{{item.quantity}}</td>
+                            <td class="text">{{item.price}}</td>                             
+                        </tr>        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </header>

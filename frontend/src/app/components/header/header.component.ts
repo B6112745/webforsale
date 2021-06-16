@@ -2,6 +2,8 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { DevicesService } from '../../services/devices.service'
 import { CartService } from '../../services/cart.service'
 import { LocalStorageService } from 'angular-web-storage';
+import { GamesService} from '../../services/games.service'
+import { HistoryService } from 'src/app/services/history.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,13 +13,14 @@ export class HeaderComponent implements OnInit {
   
   cart: DevicesService | any = []
   devices : any;
-
+  games : any;
   sumprice = 0
   userid: any
   token: any
-  constructor(public local: LocalStorageService,private cr : CartService, private ds : DevicesService) { 
+  constructor(public local: LocalStorageService,private cr : CartService, private ds : DevicesService,private hs: HistoryService, private gs: GamesService) { 
     this.userid = this.local.get('user').result.id
     this.token = this.local.get('user').token
+    
    this.cr.getcart(this.userid,this.token).subscribe(
      data => {
   
@@ -70,4 +73,24 @@ export class HeaderComponent implements OnInit {
     }
     window.location.reload();
   }
+  Submit(){
+    //const sum = this.cr.getsumPrice();
+    console.log(this.cart[0].customerid)
+    const uid = this.cart[0].customerid;
+    const cout = this.cart.length
+    console.log(cout)
+    // this.cr.clear(uid).subscribe(
+    //   date => {
+    //     console.log('Clear All')
+    //   }
+    // )
+    
+    this.hs.addHistory(this.token,this.userid,this.cart).subscribe(
+      data => {
+        console.log(data)
+      }
+    )
+    //window.location.reload();
+  }
+
 }
