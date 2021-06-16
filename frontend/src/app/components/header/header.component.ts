@@ -2,14 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { DevicesService } from '../../services/devices.service'
 import { CartService } from '../../services/cart.service'
 import { LocalStorageService } from 'angular-web-storage';
+import { FormControl} from '@angular/forms'
+import { GamesService} from '../../services/games.service'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  
   cart: DevicesService | any = []
+  productid = new FormControl('');
+  sumprice = 0
   userid: any
   token: any
   constructor(public local: LocalStorageService,private cr : CartService) { 
@@ -24,17 +28,26 @@ export class HeaderComponent implements OnInit {
       console.log(err)
      }
    )
+  
   }
 
   ngOnInit(): void {
   }
-
   
+  getsumprice(){
+    this.sumprice = 0
+  for(let p in this.cart){
+    var price
+    price = this.cart[p].quantity*this.cart[p].price
+    this.sumprice +=price
+  }
+  }
+
   getCounter(){
     return this.cr.getCounter()
   }
   getSumPrice(){
-    return this.cr.getsumPrice()
+    return this.sumprice
   }
 
 }

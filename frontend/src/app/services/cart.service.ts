@@ -53,9 +53,7 @@ export class CartService {
     return this.counter;
   }
 
-  getsumPrice(){
-    return this.sumPrice;
-  }
+  
 
   getCarts(){
     return this.cart;
