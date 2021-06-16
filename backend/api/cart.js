@@ -145,12 +145,13 @@ router.route('/addtocart/:userid/:quantity').post(authorization,(req, res) => {
     })
 })
 
-router.route('/updatecart').put(authorization,(req, res) => {
+router.route('/updatecart/:quantity').put(authorization,(req, res) => {
+    const quantity = req.params.quantity
     const payload = {
         customerid: req.body.customerid,
         gameid: req.body.gameid,
         deviceid: req.body.deviceid,
-        quantity: req.body.quantity
+        quantity: quantity
     }
     updatecart(payload)
     .then(result => {
@@ -187,7 +188,7 @@ router.route('/deletefromcart/:customerid/:productid').delete(authorization,(req
         console.log(err)
     })
 })
-router.route('/deleteallcart/:customerid').delete((req, res) => {
+router.route('/deleteallcart/:customerid').delete(authorization,(req, res) => {
     const customerid = req.params.customerid
     console.log(customerid)
     deleteallcart(customerid)

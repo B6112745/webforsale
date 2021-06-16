@@ -27,17 +27,8 @@ try {
 const updateUserData = (data,id) =>{
     return new Promise((resolve, reject) => {
         const query = {_id:id }
-        var update_user = new User({
-            username: data.username,
-            email:data.email,
-            gender: data.gender,
-            birth: data.birth,
-            phone: data.phone,
-        })
         User.findOneAndUpdate(query,{ $set :{username: data.username,
             email:data.email,
-            gender: data.gender,
-            birth: data.birth,
             phone: data.phone,}},(err, data) => {
             if(err){
                 reject(new Error('Cannot Update'))
@@ -66,8 +57,6 @@ router.route('/updateuser/:id').put(authorization,(req, res) => {
     const payload = {
         username: req.body.username,
         email: req.body.email,
-        gender: req.body.gender,
-        birth: req.body.birth,
         phone: req.body.phone,
     }
     updateUserData(payload,id)

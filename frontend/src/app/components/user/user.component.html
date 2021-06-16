@@ -13,8 +13,7 @@
                     <div class="row" class="grad"><br><h2 class="text">&nbsp;&nbsp;&nbsp;Profile 
                         <button style="margin-left:70%" type="button" 
                                 class="btn btn-outline-danger btn-xs" 
-                                (click)="deletedeviceid(item.deviceid)"
-                                data-toggle="modal" data-target="#myModal5">
+                                data-toggle="modal" data-target="#myModal5" (click)="updateprofiles()">
                                 Edit</button> </h2><br>
                         
                     </div>                                    
@@ -136,29 +135,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" >
-                            <div class="col-md-2" >
-                                    <a class="text6" >Gender</a>                               
-                            </div> 
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" formControlName='gender' value="{{item.gender}}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" >
-                            <div class="col-md-2" >
-                                    <a class="text6" >Birth</a>                               
-                            </div>                                
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" formControlName='birth' value="{{item.birth}}">
-                                </div>
-                            </div>
-                        </div>     
+                        
                     </div>
                 </form>               
-                <a href="" class="btn btn-outline-secondary pull-right" >
+                <a class="btn btn-outline-secondary pull-right" (click)="updateprofile()">
                   Update profile
                 </a>
                 

@@ -187,27 +187,41 @@ const deletegamebyid = (id) => {
     })
 }
 
-const getdevicebyid = (id) => {
+const updategame = (data) => {
     return new Promise((resolve, reject) => {
-        Device.findOne({id: id}, (err,data) => {
-            if(data.length > 0){
+        const query = {id: data.id }
+       if(data.id){
+        Game.findOneAndUpdate(query,{ $set :{title: data.title,
+            genre: data.genre,
+            description: data.description,
+            publisher: data.publisher,
+            price: data.price}},(err, data) => {
+            if(data){
                 resolve(data)
             }else{
-                reject(new Error('No device id'))
+                reject(new Error('Cannot Update'))
             }
         })
+       }
     })
 }
 
-const getgamebyid = (id) => {
+const updatedevice = (data) => {
     return new Promise((resolve, reject) => {
-        Game.findOne({id: id}, (err,data) => {
-            if(data.length > 0){
+        const query = {id: data.id }
+       if(data.id){
+        Device.findOneAndUpdate(query,{ $set :{ type: data.id,
+            name: data.name,
+            detail: data.detail,
+            quantity: data.quantity,
+            price: data.price}},(err, data) => {
+            if(data){
                 resolve(data)
             }else{
-                reject(new Error('No game id'))
+                reject(new Error('Cannot Update'))
             }
         })
+       }
     })
 }
 
@@ -354,10 +368,17 @@ router.route('/insertgame')
             res.status(400).json('No Game '+ id)
       })
   })
-  router.route('/getgamebyid/:id')
-  .delete(authorization,(req,res) => {
-      const id = req.params.id
-      getgamebyid(id)
+  router.route('/updategame')
+  .put(authorization,(req,res) => {
+    const payload = {
+        id: req.body.id,
+        title: req.body.title,
+        genre: req.body.genre,
+        description: req.body.description,
+        publisher: req.body.publisher,
+        price: req.body.price,
+    }
+      updategame(payload)
       .then(result =>{
         console.log(result)
         res.status(200).send(result)
@@ -367,18 +388,27 @@ router.route('/insertgame')
             res.status(400).json('No Game '+ id)
       })
   })
-  router.route('/getdevicebyid/:id')
-  .delete(authorization,(req,res) => {
-      const id = req.params.id
-      getdevicebyid(id)
+
+  router.route('/updatedevice')
+  .put(authorization,(req,res) => {
+    const payload = {
+        id: req.body.id,
+    type: req.body.id,
+    name: req.body.name,
+    detail: req.body.detail,
+    quantity: req.body.quantity,
+    price: req.body.price,
+    }
+      updatedevice(payload)
       .then(result =>{
         console.log(result)
         res.status(200).send(result)
       })
       .catch(err => {
             console.log(err)
-            res.status(400).json('No Device '+ id)
+            res.status(400).json('No Game '+ id)
       })
   })
+  
 
 module.exports = router

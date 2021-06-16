@@ -59,4 +59,16 @@ getdevicebytype(token: any, type: any){
     const headers = {'Authorization': token}
     return this.http.delete<any>('http://localhost:3000/carts/deletefromcart/'+customerid+'/'+deviceid,{headers})
   }
+
+  updatedevice(token: any,game: any){
+    const headers = {'Authorization': token}
+    return this.http.put<any>('http://localhost:3000/product/updatedevice',game,{headers})
+    .pipe(map(data => {
+      if (data) {
+      
+        console.log(data);
+      }
+      return data;
+    }));
+  }
 }

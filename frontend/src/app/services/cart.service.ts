@@ -64,10 +64,32 @@ export class CartService {
   getCounter(){
     return this.counter;
   }
-
+  
   
 
   getCarts(){
     return this.cart;
+  }
+  updatecart(token: any, product: any, quantity: any){
+    const headers = {'Authorization': token}
+    return this.http.put<any>('http://localhost:3000/carts/updatecart/'+quantity,product,{headers})
+    .pipe(map(data => {
+      if (data) {
+     
+        console.log(data);
+      }
+      
+    }));
+  }
+  deletecart(token: any, customerid: any){
+    const headers = {'Authorization': token}
+    return this.http.delete<any>('http://localhost:3000/carts/deleteallcart/'+customerid,{headers})
+    .pipe(map(data => {
+      if (data) {
+     
+        console.log(data);
+      }
+      
+    }));
   }
 }
