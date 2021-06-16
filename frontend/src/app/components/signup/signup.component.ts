@@ -61,6 +61,10 @@ export class SignupComponent implements OnInit {
     return this.signupForm.get('phone') as FormArray;
   }
 
+  get password(){
+    return this.signupForm.get('password') as FormArray;
+  }
+
   back(){
     this.router.navigate(['/login'])
   }
