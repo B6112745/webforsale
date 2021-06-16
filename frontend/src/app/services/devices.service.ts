@@ -40,15 +40,23 @@ export class DevicesService {
   getSomeDevices(id:number){
     return this.devices[id]
   }
-  getdevicebytype(token: any, type: any){
+  
+getdevicebytype(token: any, type: any){
+  const headers = {'Authorization': token}
+  return this.http.get<any>('http://localhost:3000/product/getdevice/'+type,{headers})
+  .pipe(map(data => {
+    if (data) {
+    
+      console.log(data);
+    }
+    return data;
+  }));
+}
+
+  deletedeviceid(token: any,customerid:any,deviceid :any){
+    console.log(deviceid)
+    console.log(customerid)
     const headers = {'Authorization': token}
-    return this.http.get<any>('http://localhost:3000/product/getdevice/'+type,{headers})
-    .pipe(map(data => {
-      if (data) {
-      
-        console.log(data);
-      }
-      return data;
-    }));
+    return this.http.delete<any>('http://localhost:3000/carts/deletefromcart/'+customerid+'/'+deviceid,{headers})
   }
 }

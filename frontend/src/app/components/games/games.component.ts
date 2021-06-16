@@ -17,6 +17,10 @@ export class GamesComponent implements OnInit {
   show: boolean|any = false;
 
   constructor(public local: LocalStorageService,private gs : GamesService, private cr : CartService) { 
+    if(this.local.get('genre') === null){
+      this.local.set('genre',{genre: null})    }
+
+
    
     if(this.local.get('genre').genre != null && this.local.get('genre').genre != 'All'){
       this.genre = this.local.get('genre').genre
