@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from 'angular-web-storage'
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,22 +9,24 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserComponent implements OnInit {
 
- udata: any;
+  userid: any;
  token: any;
 
   constructor( private local: LocalStorageService, private ud: UserService) { 
-    this.onLoading(this.ud);
+    this.onLoading();
   }
 
   ngOnInit(): void {
   }
 
-  onLoading(id: any){
+  onLoading(){
+    console.log("1111")
     try {
       this.token = this.local.get('user').token
-      this.ud.getUser(this.token,id).subscribe(
+      this.userid = this.local.get('user').result.id
+      this.ud.getUser(this.token,this.userid).subscribe(
         data => {
-          this.udata = data;
+          this.userid = data;
         },err => {
           console.log(err)
         });

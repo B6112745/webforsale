@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GamesService } from '../../services/games.service'
-import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from 'angular-web-storage'
 @Component({
   selector: 'app-updategames',
@@ -11,12 +10,11 @@ export class UpdategamesComponent implements OnInit {
 
   games: any;
   token: any
-  constructor(public local: LocalStorageService,private gs : GamesService, private httpClient:HttpClient) {
+  constructor(public local: LocalStorageService,private gs : GamesService) {
     this.onLoading();
    }
 
-  ngOnInit() {this.httpClient.delete('http://localhost:3000/product/getgame')
-  .subscribe(() => 'Delete successful');
+   ngOnInit(): void {
   }
 
   

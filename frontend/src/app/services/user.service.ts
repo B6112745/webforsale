@@ -8,11 +8,13 @@ import { map } from 'rxjs/operators';
 export class UserService {
 
   udata: any;
+  
 
   constructor(private http: HttpClient) { }
-  getUser(token: any,id: any){
+  getUser(token: any, userid:any){
+    console.log("555")
     const headers = {'Authorization': token}
-    return this.http.get<any>('http://localhost:3000/user/getuserdata/'+id,{headers})
+    return this.http.get<any>('http://localhost:3000/user/getuserdata/'+userid,{headers})
     .pipe(map(data => {
       if (data) {
         this.udata = data;
