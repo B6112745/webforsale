@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
           this.token = this.local.get('user').token
           this.router.navigate(['/games'])
         }else if (data.status == true && data.result.role === "admin"){
-          this.token = this.local.get('admin').token
           this.router.navigate(['/addgames'])
         }else{
           alert('Usernaem or password is incorrect!');
