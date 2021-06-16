@@ -7,6 +7,7 @@ import { LocalStorageService } from 'angular-web-storage'
   styleUrls: ['./updategames.component.css']
 })
 export class UpdategamesComponent implements OnInit {
+  previewLoaded: boolean = false;
 
   games: any;
   token: any
@@ -17,7 +18,19 @@ export class UpdategamesComponent implements OnInit {
    ngOnInit(): void {
   }
 
-  
+  onChangeImg(e : any){
+    if (e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.previewLoaded = true;
+          this.games.patchValue({
+            img: reader.result
+          })
+      }
+    }
+  }  
 
   onLoading(){
     try {
