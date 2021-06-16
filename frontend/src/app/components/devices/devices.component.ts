@@ -45,6 +45,7 @@ export class DevicesComponent implements OnInit {
       console.log(this.userid)
       this.cr.addG(item,this.token,this.userid,this.quantity.value).subscribe(
         data => {
+          this.cr.counter = data.length
           console.log(data)
         },err => {
           console.log(err)

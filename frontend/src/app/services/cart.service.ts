@@ -21,11 +21,11 @@ export class CartService {
     return this.http.get<any>('http://localhost:3000/carts/getcart/'+userid,{headers})
     .pipe(map(data => {
       if (data) {
-        this.cart.push(data)
+        this.cart = data
         this.counter = data.length
       
       }
-      return data;
+      return this.cart;
     }));
   }
   add(id: number){
@@ -42,9 +42,10 @@ export class CartService {
       if (data) {
         alert('Added to cart')
         this.cart.push(data)
+     
         console.log(data);
       }
-      return data;
+      return this.cart;
     }));
   }
 
