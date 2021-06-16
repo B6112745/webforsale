@@ -195,6 +195,11 @@
   color: rgb(10, 9, 9);
   text-shadow: 2px 2px 6px rgba(252, 252, 252, 0.555);
 }
+.text6{
+  font-size: 20px;
+  color: rgb(22, 22, 22);
+  text-shadow: 2px 2px 6px rgba(252, 252, 252, 0.555);
+}
 
 .grad {
   background-image: linear-gradient(to top, rgba(118, 199, 231, 0.075), rgba(2, 48, 75, 0.733));

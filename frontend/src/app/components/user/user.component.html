@@ -10,7 +10,13 @@
         <div class="d-flex h-100">
             <div class="row">
                 <div class="col-md-12" class="grad" >
-                    <div class="row" class="grad"><br><h2 class="text">&nbsp;&nbsp;&nbsp;Profile</h2><br>
+                    <div class="row" class="grad"><br><h2 class="text">&nbsp;&nbsp;&nbsp;Profile 
+                        <button style="margin-left:70%" type="button" 
+                                class="btn btn-outline-danger btn-xs" 
+                                (click)="deletedeviceid(item.deviceid)"
+                                data-toggle="modal" data-target="#myModal5">
+                                Edit</button> </h2><br>
+                        
                     </div>                                    
                         <form [formGroup]="gameForm" style="margin-left:4%">
                             <div class="card-body" *ngFor="let item of userid; index as i">
@@ -72,7 +78,7 @@
                                 </div>     
                             </div>
                         </form>                    
-                </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -86,3 +92,77 @@
         <a>B6117603 Teerawat Uasriwong |TorguZaa| &nbsp;&nbsp;&nbsp;</a>
     </div>
 </div>
+
+<div class="modal fade" id="myModal5">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit your profile</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form [formGroup]="gameForm" style="margin-left:4%">
+                    <div class="card-body" *ngFor="let item of userid; index as i">
+                        <div class="row" >
+                            <div class="col-md-2" >
+                                    <a class="text6" >Username</a>                               
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName='username' value="{{item.username}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col-md-2" >
+                                    <a class="text6" >Email</a>                               
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName='username' value="{{item.email}}">                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col-md-2" >
+                                    <a class="text6" >Phone</a>                               
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName='username' value="{{item.phone}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col-md-2" >
+                                    <a class="text6" >Gender</a>                               
+                            </div> 
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName='username' value="{{item.gender}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col-md-2" >
+                                    <a class="text6" >Birth</a>                               
+                            </div>                                
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName='username' value="{{item.birth}}">
+                                </div>
+                            </div>
+                        </div>     
+                    </div>
+                </form>               
+                <a href="" class="btn btn-outline-secondary pull-right" >
+                  Update profile
+                </a>
+                
+            </div>
+            <!-- Modal footer -->
+        </div>
+    </div>
+  </div>
