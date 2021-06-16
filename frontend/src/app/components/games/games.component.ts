@@ -17,16 +17,22 @@ export class GamesComponent implements OnInit {
   show: boolean|any = false;
 
   constructor(public local: LocalStorageService,private gs : GamesService, private cr : CartService) { 
-    this.genre = this.local.get('genre').genre
-    console.log(this.genre)
-    this.onLoading();
+   
+    if(this.local.get('genre').genre != null && this.local.get('genre').genre != 'All'){
+      this.genre = this.local.get('genre').genre
+      console.log(this.genre)
+      this.Loadgamegenre();
+    }else{
+      this.onLoading();
+    }
+ 
     
   }
 
   ngOnInit(): void {}
 
   onLoading(){
-    if(this.genre === 'All'){
+    
       try {
         this.token = this.local.get('user').token
         this.gs.getgame(this.token).subscribe(
@@ -38,17 +44,31 @@ export class GamesComponent implements OnInit {
       }catch (error){
         console.log(error)
       }
-    }else{
-      
-    }
+    
    
   }
+  Loadgamegenre(){
+    try {
+      this.token = this.local.get('user').token
+      this.gs.getgamebygenre(this.token,this.genre).subscribe(
+        data => {
+          this.games = data;
+          this.local.remove('genre')
+        },err => {
+          console.log(err)
+        });
+    }catch (error){
+      console.log(error)
+    }
+  }
+
 
   onClick(){
     this.show =!this.show
   }
 
   addToCart(games: any){
+    console.log(games)
     try{
       this.token = this.local.get('user').token
       this.userid = this.local.get('user').result.id

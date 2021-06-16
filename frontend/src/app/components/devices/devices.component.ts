@@ -10,8 +10,9 @@ import { FormControl} from '@angular/forms'
 })
 export class DevicesComponent implements OnInit {
 
-  cart: DevicesService | any = []
+ cart: DevicesService | any = []
  quantity = new FormControl('');
+ type = new FormControl('');
   devices: any;
   token: any;
   userid: any;
@@ -56,6 +57,19 @@ export class DevicesComponent implements OnInit {
      }
     
   }
- 
-
+  searchbytype(){
+    try
+    { this.token = this.local.get('user').token
+    this.ds.getdevicebytype(this.token,this.type.value).subscribe(
+      data => {
+        this.devices = data
+        console.log(data)
+      },err => {
+        console.log(err)
+      }
+    )}
+    catch(error){
+      console.log(error)
+    }
+  }
 }
