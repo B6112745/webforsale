@@ -4,11 +4,13 @@ const router = expressFunction.Router();
 const mongoose = require('mongoose');
 
 var Schema = require("mongoose").Schema;
+const e = require('express');
 const cartSchema = Schema({
     customerid: String,
     gameid: String,
     deviceid: String,
-    quantity: Number
+    quantity: Number,
+    price: Number
 },  {
     conllection: 'carts'
 });
@@ -94,14 +96,26 @@ const deletefromcart = (customerid,productid) => {
   })
 }
 
-router.route('/addtocart').post(authorization,(req, res) => {
-    const payload = {
-        customerid: req.body.customerid,
-        gameid: req.body.gameid,
-        deviceid: req.body.deviceid,
-        quantity: req.body.quantity,
-        price: req.body.price
+router.route('/addtocart/:userid/:quantity').post(authorization,(req, res) => {
+    var payload
+    const userid = req.params.userid
+    const quantity = req.params.quantity
+    if(req.body['id'][0] === 'G'){
+        console.log(req.body['id'][0])
+         payload = {
+            customerid: userid,
+            gameid: req.body['id'],
+            price: req.body['price']
+        }
+    }else{
+         payload = {
+            customerid: userid,
+            deviceid: req.body['id'],
+            quantity: quantity,
+            price: req.body['price']
+        }
     }
+    
     addtocart(payload)
     .then(result => {
         res.status(200).send(result)
