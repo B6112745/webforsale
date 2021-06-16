@@ -9,6 +9,7 @@ const cartSchema = Schema({
     customerid: String,
     gameid: String,
     deviceid: String,
+    name: String,
     quantity: Number,
     price: Number
 },  {
@@ -30,6 +31,7 @@ const addtocart = (data) => {
             customerid: data.customerid,
             gameid: data.gameid,
             deviceid: data.deviceid,
+            name: data.name,
             quantity: data.quantity,
             price: data.price
         })
@@ -105,12 +107,15 @@ router.route('/addtocart/:userid/:quantity').post(authorization,(req, res) => {
          payload = {
             customerid: userid,
             gameid: req.body['id'],
+            name: req.body['title'],
+            quantity: 1,
             price: req.body['price']
         }
     }else{
          payload = {
             customerid: userid,
             deviceid: req.body['id'],
+            name: req.body['name'],
             quantity: quantity,
             price: req.body['price']
         }

@@ -41,5 +41,15 @@ export class GamesService {
   getSomeDevices(id:number){
     return this.games[id]
   }
-
+  getgamebyid(token: any, productid: any){
+    const headers = {'Authorization': token}
+    return this.http.get<any>('http://localhost:3000/product/getgamebyid/'+productid,{headers})
+    .pipe(map(data => {
+      if (data) {
+      
+        console.log(data);
+      }
+      return data;
+    }));
+  }
 }

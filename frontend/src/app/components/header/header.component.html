@@ -57,7 +57,7 @@
         </li>        
       </ul>
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0" style="margin-left:1000px;">
-        <a class="btn btn-dark" data-toggle="modal" data-target="#myModal">
+        <a class="btn btn-dark" data-toggle="modal" data-target="#myModal" (click)="getsumprice()">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="auto" fill="currentColor"
               class="bi bi-cart-plus-fill" viewBox="0 0 16 16" aria-hidden="true">
               <path
@@ -88,6 +88,7 @@
                       <tr>
                           <th>ID.</th>
                           <th>Name</th>
+                          <th>Quantity</th>
                           <th>Price</th>
                           <th>&nbsp;&nbsp;&nbsp;ETC</th>
                       </tr>
@@ -95,7 +96,8 @@
                   <tbody>
                       <tr *ngFor="let item of cart; index as i">
                           <td scope="row">{{item.deviceid}}{{item.gameid}}</td>
-                          <td>{{item.customerid}}{{item.name}}</td>
+                          <td >{{item.title}}{{item.name}}</td>
+                          <td>{{item.quantity}}</td>
                           <td>{{item.price}}</td>
                           <a class="btn btn-outline-primary" role="button" *ngIf=item.deviceid>
                             <svg  xmlns="http://www.w3.org/2000/svg" 

@@ -187,6 +187,30 @@ const deletegamebyid = (id) => {
     })
 }
 
+const getdevicebyid = (id) => {
+    return new Promise((resolve, reject) => {
+        Device.findOne({id: id}, (err,data) => {
+            if(data.length > 0){
+                resolve(data)
+            }else{
+                reject(new Error('No device id'))
+            }
+        })
+    })
+}
+
+const getgamebyid = (id) => {
+    return new Promise((resolve, reject) => {
+        Game.findOne({id: id}, (err,data) => {
+            if(data.length > 0){
+                resolve(data)
+            }else{
+                reject(new Error('No game id'))
+            }
+        })
+    })
+}
+
 
 
 
@@ -328,6 +352,32 @@ router.route('/insertgame')
       .catch(err => {
             console.log(err)
             res.status(400).json('No Game '+ id)
+      })
+  })
+  router.route('/getgamebyid/:id')
+  .delete(authorization,(req,res) => {
+      const id = req.params.id
+      getgamebyid(id)
+      .then(result =>{
+        console.log(result)
+        res.status(200).send(result)
+      })
+      .catch(err => {
+            console.log(err)
+            res.status(400).json('No Game '+ id)
+      })
+  })
+  router.route('/getdevicebyid/:id')
+  .delete(authorization,(req,res) => {
+      const id = req.params.id
+      getdevicebyid(id)
+      .then(result =>{
+        console.log(result)
+        res.status(200).send(result)
+      })
+      .catch(err => {
+            console.log(err)
+            res.status(400).json('No Device '+ id)
       })
   })
 
