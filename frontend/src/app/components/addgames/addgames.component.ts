@@ -35,7 +35,7 @@ export class AddgamesComponent implements OnInit {
   }
   
   addGame(){
-    this.token = this.local.get('admin').token
+    this.token = this.local.get('user').token
     this.gs.addGame(this.gameForm.value,this.token).subscribe(
       data => {
         console.log(data)

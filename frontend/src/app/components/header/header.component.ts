@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { DevicesService } from '../../services/devices.service'
 import { CartService } from '../../services/cart.service'
 import { LocalStorageService } from 'angular-web-storage';
-import { FormControl} from '@angular/forms'
 import { GamesService} from '../../services/games.service'
 @Component({
   selector: 'app-header',
@@ -12,7 +11,7 @@ import { GamesService} from '../../services/games.service'
 export class HeaderComponent implements OnInit {
   
   cart: DevicesService | any = []
-  productid = new FormControl('');
+
   sumprice = 0
   userid: any
   token: any
@@ -48,6 +47,9 @@ export class HeaderComponent implements OnInit {
   }
   getSumPrice(){
     return this.sumprice
+  }
+  setgenre(genre: any){
+    this.local.set('genre',{genre:genre})
   }
 
 }
