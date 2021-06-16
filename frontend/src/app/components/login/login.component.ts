@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { LocalStorageService } from 'angular-web-storage'
@@ -12,6 +12,10 @@ export class LoginComponent implements OnInit {
   
   token: any
   userid: any
+  status: boolean|any
+  parentColorProperty: any
+
+
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -20,10 +24,15 @@ export class LoginComponent implements OnInit {
   constructor(public local: LocalStorageService,private router: Router, private auth: LoginService) { }
 
   ngOnInit(): void {
+    this.status = false;
   }
 
-  signin(){
-    
+  ngClassMethod() {
+    this.status = !this.status;
+  }
+
+  signin() {
+
 
     //console.log(this.loginForm.value);
     this.auth.signIn(this.loginForm.value).subscribe(
@@ -33,13 +42,13 @@ export class LoginComponent implements OnInit {
         if(data.status == true && data.result.role === "user"){
           this.token = this.local.get('user').token
           this.router.navigate(['/games'])
-        }else if (data.status == true && data.result.role === "admin"){
+        } else if (data.status == true && data.result.role === "admin") {
           this.router.navigate(['/addgames'])
-        }else{
+        } else {
           alert('Usernaem or password is incorrect!');
         }
       },
-      err =>{
+      err => {
         console.log(err);
         alert('Usernaem or password is incorrect!');
       }
@@ -55,8 +64,12 @@ export class LoginComponent implements OnInit {
     return this.userid
   }
 
-  signup(){
-      this.router.navigate(['/signup'])
-    }
+  signup() {
+    this.router.navigate(['/signup'])
+  }
+
+  receiveData($event: any) {
+    this.parentColorProperty = $event;
+  }
 
 }

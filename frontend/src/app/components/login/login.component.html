@@ -1,42 +1,77 @@
-<div class="container" style="margin-top:200px;">
-    <div class="row">
-        <div class="col-md-3">
+<div style="width:100%;height:100%" class="size" [ngStyle]="{'background-color': parentColorProperty}"><br><br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <div class="float-left">
+                            Signin
+                        </div>
+                        <button type="button" (click)="ngClassMethod()" class="btn btn-sm float-right"
+                            [ngClass]="{'btn-danger': status, 'btn-primary': !status}">Cilck</button>
+                    </div>
+                    <form [formGroup]="loginForm">
+                        <div class="card-body" [ngClass]="{'alert-danger': status}">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="">Username</label>
+                                        <input type="text" class="form-control" [(ngModel)]="lotto"
+                                            formControlName="username">
 
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    Signin
-                </div>
-                <form [formGroup]="loginForm">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="">Username</label>
-                                    <input type="text" class="form-control" formControlName="username">
+                                        <div [ngSwitch]="lotto">
+                                            <div *ngSwitchCase="6114121">
+                                                <div class="alert alert-success" role="alert">
+                                                    <strong>Piyapong Visitsin</strong>
+                                                </div>
+                                            </div>
+                                            <div *ngSwitchCase="6112745">
+                                                <div class="alert alert-success" role="alert">
+                                                    <strong>Chalintra Yotasi</strong>
+                                                </div>
+                                            </div>
+                                            <div *ngSwitchCase="6107826">
+                                                <div class="alert alert-success" role="alert">
+                                                    <strong>Makawan Thojan</strong>
+                                                </div>
+                                            </div>
+                                            <div *ngSwitchCase="6117603">
+                                                <div class="alert alert-success" role="alert">
+                                                    <strong>Teerawat Uasriwong</strong>
+                                                </div>
+                                            </div>
+                                            <div *ngSwitchCase="1234567890">
+                                                <div class="alert alert-success" role="alert">
+                                                    <strong>You found a secret</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <div class="form-group">
                                         <label for="">Password</label>
                                         <input type="password" class="form-control" formControlName="password">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12"><br>
-                                        <button type="button" class="btn btn-primary" (click)="signin()">Sign
-                                            in</button>&nbsp;
-                                        <button type="button" class="btn btn-primary" (click)="signup()">Sign
-                                            up</button>&nbsp;
                                     </div>
                                 </div>
                             </div>
-                </form>
-
+                            <div class="row">
+                                <div class="col-md-12"><br>
+                                    <button type="button" class="btn btn-primary" (click)="signin()">Sign
+                                        in</button>&nbsp;
+                                    <button type="button" class="btn btn-primary" (click)="signup()">Sign
+                                        up</button>&nbsp;
+                                </div>
+                            </div>
+                            <div>&nbsp;</div>
+                            <app-ngstyle (messageEvent)="receiveData($event)"></app-ngstyle>
+                            <div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-
         </div>
     </div>
 </div>
