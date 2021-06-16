@@ -45,6 +45,7 @@ export class GamesComponent implements OnInit {
       console.log(this.userid)
       this.cr.addG(games,this.token,this.userid,this.token).subscribe(
         data => {
+          this.cr.counter = data.length
           console.log(data)
         },err => {
           console.log(err)

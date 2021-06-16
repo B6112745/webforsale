@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
    this.cr.getcart(this.userid,this.token).subscribe(
      data => {
   
-      this.cart = data
+      this.cart = this.cr.getCarts()
  
      },err => {
       console.log(err)
